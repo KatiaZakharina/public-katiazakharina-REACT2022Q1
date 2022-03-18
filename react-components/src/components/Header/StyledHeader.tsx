@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { px2vw } from '../../utils/px2vw';
+import { SEA_BLUE } from '../../styles/colorConstats';
 
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.8rem 0;
-  background-color: #3b5c78;
+  height: 10vh;
+  background-color: ${SEA_BLUE};
 `;
 
 export const Nav = styled.nav`
@@ -47,13 +49,13 @@ export const NavLinkLogo = (props: NavLinkLogoProps) => (
   </NavLink>
 );
 
-const NavLogo = styled.div<NavLogoProps>`
+const NavLogo = styled.img.attrs((props: NavLogoProps) => ({
+  src: props.img,
+  alt: 'logo image',
+}))<NavLogoProps>`
   width: ${(props) => px2vw(props.width)};
   height: ${(props) => px2vw(props.height)};
   min-width: ${(props) => props.width / 2}px;
   min-height: ${(props) => props.height / 2}px;
-  background-image: url(${(props) => props.img});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
 `;
