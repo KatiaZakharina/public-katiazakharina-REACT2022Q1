@@ -22,7 +22,7 @@ export const Global = createGlobalStyle`
       }
 
       @media (min-width: 1024px) {
-        font-size: ${px2vw(16)};
+        font-size: ${px2vw(18)};
       }
 
       @media (min-width: 1440px) {
