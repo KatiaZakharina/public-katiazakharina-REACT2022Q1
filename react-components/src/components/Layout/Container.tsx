@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.section`
   display: flex;
   margin: 0 auto;
   width: calc(100vw - 100px);

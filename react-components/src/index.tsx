@@ -5,7 +5,7 @@ import { Global } from './styles/global';
 import App from './App';
 import { Home } from './pages/Home/Home';
 import { AboutUs } from './pages/AboutUs/AboutUs';
-import { NoMatch } from './pages/NoMatch';
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 ReactDOM.render(
   <>
@@ -15,8 +15,8 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="about" element={<AboutUs />} />
-          <Route path="404" element={<NoMatch />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route path="404" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "a5d323b1-374c-4b7e-bd13-984f5236e0ff",
+    "accommodation": "Whiskey Bravo Lima Hotel",
+    "rating": 5,
+    "city": "Ribnica na Pohorju",
+    "country": "Romania",
+    "img": "img1.jpg",
+    "price": 1000,
+    "duration": 7
+  },
+  {
+    "id": "9950d32b-33cb-4278-8c3c-124d341145ea",
+    "accommodation": "Hotel Tango Resort",
+    "rating": 4,
+    "city": "Pokrovo-Prigorodnoye",
+    "country": "Turkey",
+    "img": "img2.jpg",
+    "price": 2000,
+    "duration": 14
+  },
+  {
+    "id": "88073d01-b4a6-4855-bd29-38b506144a13",
+    "accommodation": "Tango Papa Hotel",
+    "rating": 4,
+    "city": "Brak",
+    "country": "Greece",
+    "img": "img3.jpg",
+    "price": 1500,
+    "duration": 10
+  },
+  {
+    "id": "93c30042-86e6-446b-81b1-1b484d2c04f1",
+    "accommodation": "Alfa Golf Hotel",
+    "rating": 3,
+    "city": "Bihoro",
+    "country": "Romania",
+    "img": "img4.jpg",
+    "price": 1600,
+    "duration": 12
+  },
+  {
+    "id": "14b88311-1b54-414c-9da0-2b9d4217927c",
+    "accommodation": "Uniform Echo Resort",
+    "rating": 5,
+    "city": "Jiuchi",
+    "country": "Turkey",
+    "img": "img5.jpg",
+    "price": 2000,
+    "duration": 20
+  },
+  {
+    "id": "f8ad25ae-691c-4513-995c-885eeaf2a8ce",
+    "accommodation": "Kilo Yankee Club",
+    "rating": 3,
+    "city": "Rybnik",
+    "country": "Greece",
+    "img": "img6.jpg",
+    "price": 3000,
+    "duration": 15
+  },
+  {
+    "id": "36d5639d-38d0-46c6-b1c7-864cb288ca83",
+    "accommodation": "Foxtrot Victor Park",
+    "rating": 5,
+    "city": "Babakanbandung",
+    "country": "Spain",
+    "img": "img7.jpg",
+    "price": 1000,
+    "duration": 7
+  },
+  {
+    "id": "b9a236e5-2713-47f8-b55a-4d802d3359f3",
+    "accommodation": "Bravo KiloAqua Park",
+    "rating": 3,
+    "city": "Caen",
+    "country": "France",
+    "img": "img8.jpg",
+    "price": 2500,
+    "duration": 14
+  },
+  {
+    "id": "e4d75c7a-8bb3-451a-9cfb-616aa5fb7fbe",
+    "accommodation": "Lima Golf Hotel",
+    "rating": 3,
+    "city": "Karolinka",
+    "country": "Bulgaria",
+    "img": "img9.jpg",
+    "price": 2000,
+    "duration": 21
+  },
+  {
+    "id": "d7117ca2-09d6-472d-9a0a-497f119e2488",
+    "accommodation": "Delta Victor Hotel",
+    "rating": 4,
+    "city": "Vila Nova",
+    "country": "Turkey",
+    "img": "img10.jpg",
+    "price": 1500,
+    "duration": 14
+  },
+  {
+    "id": "cb3860a4-1e21-4cd9-a41d-5ee415f6e159",
+    "accommodation": "Juliett Hotel",
+    "rating": 3,
+    "city": "Kawangohari",
+    "country": "Filipinas",
+    "img": "img11.jpg",
+    "price": 1000,
+    "duration": 7
+  },
+  {
+    "id": "86533e6a-0372-49d0-8d8e-dda47a4c4f66",
+    "accommodation": "Sierra Quebec Resort",
+    "rating": 4,
+    "city": "Xindian",
+    "country": "India",
+    "img": "img12.jpg",
+    "price": 500,
+    "duration": 21
+  }
+]

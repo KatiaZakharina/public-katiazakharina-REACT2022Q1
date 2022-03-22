@@ -7,7 +7,6 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.26",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
     "react": "^17.0.2",
@@ -24,9 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .tsx",
-    "lint:fix": "eslint src --ext .tsx --fix",
-    "prettier": "prettier . --write",
+    "lint:fix": "eslint src --ext .tsx,.ts --fix",
+    "prettier:fix": "prettier . --write",
     "prepare": "cd .. && husky install react-components/.husky"
   },
   "eslintConfig": {
@@ -48,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^17.0.22",
     "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
@@ -60,9 +59,10 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "*.tsx": [
+    "*.{ts,tsx}": [
       "npm run lint:fix",
-      "npm run prettier"
-    ]
+      "npm run prettier:fix"
+    ],
+    "*.{js,css,md}": "npm run prettier:fix"
   }
 }

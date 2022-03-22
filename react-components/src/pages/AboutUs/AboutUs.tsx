@@ -1,11 +1,12 @@
 import { Hero } from '../../components/Hero/Hero';
-import { InfoSection } from '../../components/InfoSection/InfoSection';
+import { InfoSection } from './InfoSection/InfoSection';
 import { ColumnContainer } from '../../components/Layout/Container';
+import { Main } from '../../components/Layout/Main';
+import { Footer } from '../../components/Footer/Footer';
 
 import about from '../../assets/bg_img/about.jpg';
 import about1 from '../../assets/bg_img/about1.webp';
 import about2 from '../../assets/bg_img/about2.webp';
-import { Main } from '../../components/Layout/Main';
 
 export function AboutUs() {
   return (
@@ -43,6 +44,7 @@ export function AboutUs() {
           </p>
         </InfoSection>
       </ColumnContainer>
+      <Footer />
     </Main>
   );
 }

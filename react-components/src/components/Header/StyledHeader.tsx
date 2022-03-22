@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { px2vw } from '../../utils/px2vw';
+
 import { SEA_BLUE } from '../../styles/colorConstats';
 
 export const StyledHeader = styled.header`
@@ -40,12 +40,12 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
-type NavLogoProps = { img: string; width: number; height: number };
+type NavLogoProps = { img: string };
 type NavLinkLogoProps = { to: string } & NavLogoProps;
 
 export const NavLinkLogo = (props: NavLinkLogoProps) => (
   <NavLink to={props.to}>
-    <NavLogo img={props.img} width={props.width} height={props.height}></NavLogo>
+    <NavLogo img={props.img}></NavLogo>
   </NavLink>
 );
 
@@ -53,9 +53,7 @@ const NavLogo = styled.img.attrs((props: NavLogoProps) => ({
   src: props.img,
   alt: 'logo image',
 }))<NavLogoProps>`
-  width: ${(props) => px2vw(props.width)};
-  height: ${(props) => px2vw(props.height)};
-  min-width: ${(props) => props.width / 2}px;
-  min-height: ${(props) => props.height / 2}px;
+  width: 13rem;
+  height: 2rem;
   object-fit: cover;
 `;
