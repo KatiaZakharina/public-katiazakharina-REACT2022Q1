@@ -6,6 +6,7 @@ export const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 250px;
+  max-width: 400px;
   color: ${BLACK};
   background-color: #fff;
   border-radius: 2rem 0;
