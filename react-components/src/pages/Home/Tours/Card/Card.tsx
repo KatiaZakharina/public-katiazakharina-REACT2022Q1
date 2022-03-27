@@ -9,7 +9,7 @@ export function Card(props: CardProps) {
   const { accommodation, img, rating, city, country, price, duration } = props.data;
 
   return (
-    <StyledCard>
+    <StyledCard data-testid="tour_card">
       <CardImg img={require(`../../../../assets/cards/${img}`)} name={accommodation} />
 
       <CardDescription>

@@ -1,4 +1,4 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component, FormEvent } from 'react';
 
 import { SearchButton, StyledInput, StyledSearch } from './StyledSearch';
 
@@ -30,20 +30,21 @@ export class Search extends Component<SearchProps, SearchState> {
     this.setState({ search });
   };
 
-  onUpdateCards = () => {
+  onUpdateCards = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     this.props.onUpdateSearch(this.state.search);
   };
 
   render() {
     return (
-      <StyledSearch>
+      <StyledSearch onSubmit={this.onUpdateCards}>
         <StyledInput
-          type="text"
+          type="textbox"
           placeholder="Search"
           onChange={this.onUpdateSearch}
           value={this.state.search ?? ''}
         />
-        <SearchButton onClick={this.onUpdateCards}>Search</SearchButton>
+        <SearchButton>Search</SearchButton>
       </StyledSearch>
     );
   }

@@ -1,6 +1,6 @@
 import { Hero } from '../../components/Hero/Hero';
 import { Main } from '../../components/Layout/Main';
-import { CardSection } from './CardSection/CardSection';
+import { CardSection } from './Tours/CardSection/CardSection';
 import { Footer } from '../../components/Footer/Footer';
 
 import toursData from '../../db/tours_data.json';

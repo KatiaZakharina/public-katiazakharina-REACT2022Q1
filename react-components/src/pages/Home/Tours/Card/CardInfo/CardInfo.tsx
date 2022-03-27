@@ -1,7 +1,7 @@
 import { TourData } from '../../../../../db/ToursDataType';
 import { CardIcon, CardInfoRow, StyledCardInfo } from './StyledCardInfo';
 
-const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text?: string }> = [
+export const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text?: string }> = [
   { name: 'rating', icon: 'star.svg', text: 'stars' },
   { name: 'duration', icon: 'calendar.svg', text: 'days' },
   { name: 'city', icon: 'location.svg' },

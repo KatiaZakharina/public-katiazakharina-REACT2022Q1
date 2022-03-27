@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { BLACK, GRAY, WHITE } from '../../../../styles/colorConstats';
 
-export const StyledSearch = styled.div`
+export const StyledSearch = styled.form`
   display: flex;
   margin: 0 auto 30px;
   padding: 20px 30px;

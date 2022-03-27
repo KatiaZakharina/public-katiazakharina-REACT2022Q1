@@ -1,11 +1,11 @@
 import { Component } from 'react';
 
-import { TourData, ToursData } from '../../../db/ToursDataType';
-import { Card } from './Card/Card';
-import { Search } from './Search/Search';
+import { TourData, ToursData } from '../../../../db/ToursDataType';
+import { Card } from '../Card/Card';
+import { Search } from '../Search/Search';
 import { SyledCardsWrapper } from './StyledCardsSection';
-import { ColumnContainer } from '../../../components/Layout/Container';
-import { NoMatch } from './Search/StyledSearch';
+import { ColumnContainer } from '../../../../components/Layout/Container';
+import { NoMatch } from '../Search/StyledSearch';
 
 type CardSectionProps = { data: ToursData };
 type CardSectionState = { data: ToursData; search: string };
