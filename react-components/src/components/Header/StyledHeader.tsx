@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SEA_BLUE } from '../../styles/colorConstats';
+import { SEA_BLUE, WHITE } from 'styles/colorConstats';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -17,7 +17,7 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   margin-left: auto;
-  width: calc(40vw);
+  width: 40vw;
   max-width: 700px;
 `;
 
@@ -26,12 +26,12 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 1.5rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: #fff;
+  color: ${WHITE};
   opacity: 0.8;
   transition: opacity linear 0.2s;
 
   &.active {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid ${WHITE};
     opacity: 1;
   }
 

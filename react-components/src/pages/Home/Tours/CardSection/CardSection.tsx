@@ -1,14 +1,14 @@
 import { Component } from 'react';
 
-import { TourData, ToursData } from '../../../../db/ToursDataType';
+import { TourData } from 'db/ToursDataType';
 import { Card } from '../Card/Card';
 import { Search } from '../Search/Search';
 import { SyledCardsWrapper } from './StyledCardsSection';
-import { ColumnContainer } from '../../../../components/Layout/Container';
+import { ColumnContainer } from 'components/Layout/Container';
 import { NoMatch } from '../Search/StyledSearch';
 
-type CardSectionProps = { data: ToursData };
-type CardSectionState = { data: ToursData; search: string };
+type CardSectionProps = { data: Array<TourData> };
+type CardSectionState = { data: Array<TourData>; search: string };
 
 export class CardSection extends Component<CardSectionProps, CardSectionState> {
   constructor(props: CardSectionProps) {
@@ -23,7 +23,9 @@ export class CardSection extends Component<CardSectionProps, CardSectionState> {
   };
 
   filterTour(tour: TourData) {
-    if (this.state.search.length === 0) return true;
+    if (!this.state.search.length) {
+      return true;
+    }
 
     const searchString = this.state.search.toLocaleLowerCase();
     const searchFields: Array<keyof TourData> = ['city', 'accommodation', 'country'];
@@ -41,7 +43,7 @@ export class CardSection extends Component<CardSectionProps, CardSectionState> {
         <Search onUpdateSearch={this.onUpdateSearch} />
 
         <SyledCardsWrapper>
-          {searchResultData.length !== 0 ? (
+          {!!searchResultData.length ? (
             searchResultData.map((tour) => <Card data={tour} key={tour.id} />)
           ) : (
             <NoMatch>Your search did not match any tours.</NoMatch>

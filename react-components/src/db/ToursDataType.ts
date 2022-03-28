@@ -8,5 +8,3 @@ export type TourData = {
   price: number;
   duration: number;
 };
-
-export type ToursData = Array<TourData>;

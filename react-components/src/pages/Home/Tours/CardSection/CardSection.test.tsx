@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
+import { fakeLocalStorage } from '__mocks__/fakeLocalStorage ';
 import { CardSection } from './CardSection';
 
 const data = [
@@ -38,6 +39,12 @@ const data = [
 ];
 
 describe('CardSection', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: fakeLocalStorage,
+    });
+  });
+
   afterEach(() => {
     window.localStorage.clear();
   });
@@ -63,10 +70,17 @@ describe('CardSection', () => {
 
     expect(screen.queryAllByTestId('tour_card')).toHaveLength(0);
     expect(screen.getByText('Your search did not match any tours.')).toBeInTheDocument();
+    expect(window.localStorage.getItem('tours_search')).toBe(searchQuery);
   });
 });
 
 describe('CardSection cards', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: fakeLocalStorage,
+    });
+  });
+
   afterEach(() => {
     window.localStorage.clear();
   });
@@ -117,10 +131,6 @@ describe('CardSection cards', () => {
 });
 
 describe('Event', () => {
-  afterEach(() => {
-    window.localStorage.clear();
-  });
-
   const typeQuery = (search: HTMLInputElement, searchQuery: string) => {
     search.value = '';
 

@@ -1,4 +1,4 @@
-import { TourData } from '../../../../../db/ToursDataType';
+import { TourData } from 'db/ToursDataType';
 import { CardIcon, CardInfoRow, StyledCardInfo } from './StyledCardInfo';
 
 export const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text?: string }> = [
@@ -13,7 +13,7 @@ export const CardInfo = (props: CardInfoProps) => (
   <StyledCardInfo>
     {cardInfoData.map((field, idx) => (
       <CardInfoRow key={idx}>
-        <CardIcon src={require(`../../../../../assets/svg/${field.icon}`)} />
+        <CardIcon src={require(`assets/svg/${field.icon}`)} />
         {`${props[field.name]} ${field.text ?? ''}`}
       </CardInfoRow>
     ))}

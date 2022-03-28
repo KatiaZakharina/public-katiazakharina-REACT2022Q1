@@ -1,7 +1,7 @@
 import { DevInfo, RSLogo, StyledFooter } from './StyledFooter';
-import { Container } from '../Layout/Container';
+import { Container } from 'components/Layout/Container';
 
-import rsschool from '../../assets/svg/rs_school_js.svg';
+import rsschool from 'assets/svg/rs_school_js.svg';
 
 export function Footer() {
   return (

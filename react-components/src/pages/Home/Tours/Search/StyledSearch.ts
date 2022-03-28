@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK, GRAY, WHITE } from '../../../../styles/colorConstats';
+import { BLACK, GRAY, ORANGE, WHITE } from 'styles/colorConstats';
 
 export const StyledSearch = styled.form`
   display: flex;
@@ -24,7 +24,7 @@ export const SearchButton = styled.button`
   text-align: center;
   color: ${WHITE};
   border: none;
-  background: #fb8f1b;
+  background: ${ORANGE};
 `;
 
 export const NoMatch = styled.p`

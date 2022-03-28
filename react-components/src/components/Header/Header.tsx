@@ -1,7 +1,7 @@
 import { StyledHeader, NavLinkLogo, Nav, StyledNavLink } from './StyledHeader';
-import { Container } from '../Layout/Container';
+import { Container } from 'components/Layout/Container';
 
-import logo from '../../assets/svg/logo.svg';
+import logo from 'assets/svg/logo.svg';
 
 export function Header() {
   return (

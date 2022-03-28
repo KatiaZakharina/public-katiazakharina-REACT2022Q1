@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK } from '../../../../styles/colorConstats';
+import { BLACK, WHITE } from 'styles/colorConstats';
 
 export const StyledCard = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const StyledCard = styled.div`
   min-width: 250px;
   max-width: 400px;
   color: ${BLACK};
-  background-color: #fff;
+  background-color: ${WHITE};
   border-radius: 2rem 0;
   box-shadow: 0px 4px 30px rgb(0 0 0 / 15%);
 

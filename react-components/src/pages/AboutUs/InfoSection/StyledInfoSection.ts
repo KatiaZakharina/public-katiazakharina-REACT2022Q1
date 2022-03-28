@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { BLACK } from '../../../styles/colorConstats';
+import { BLACK } from 'styles/colorConstats';
+import { Side } from './SideEnum';
 
-export const StyledInfoSection = styled.div<{ side: 'left' | 'right' }>`
+export const StyledInfoSection = styled.div<{ side: Side }>`
   display: flex;
   color: ${BLACK};
-  flex-direction: ${(props) => (props.side === 'left' ? 'row' : 'row-reverse')};
+  flex-direction: ${(props) => (props.side === Side.left ? 'row' : 'row-reverse')};
   gap: 25px;
   font-weight: 300;
   font-size: 1.1rem;

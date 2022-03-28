@@ -1,6 +1,7 @@
+import { Side } from './SideEnum';
 import { StyledInfoSection } from './StyledInfoSection';
 
-type InfoSectionProps = { side: 'left' | 'right'; img: string; children: React.ReactNode };
+type InfoSectionProps = { side: Side; img: string; children: React.ReactNode };
 
 export function InfoSection(props: InfoSectionProps) {
   return (

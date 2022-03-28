@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 
 import { cardInfoData } from './CardInfo/CardInfo';
 import { Card } from './Card';
-import { TourData } from '../../../../db/ToursDataType';
+import { TourData } from 'db/ToursDataType';
 
 describe('Card', () => {
   const data: TourData = {
@@ -29,7 +29,7 @@ describe('Card', () => {
 
     cardInfoData.forEach((info) =>
       expect(
-        screen.getByText(`${data[info.name]}${info.text ? ' ' + info.text : ''}`)
+        screen.getByText(`${data[info.name]}${info.text ? ` ${info.text}` : ''}`)
       ).toBeInTheDocument()
     );
   });

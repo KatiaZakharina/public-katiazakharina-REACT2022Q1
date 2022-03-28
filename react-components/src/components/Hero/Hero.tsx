@@ -1,4 +1,4 @@
-import { Container } from '../Layout/Container';
+import { Container } from 'components/Layout/Container';
 import { BgWrapper, LeftTitle } from './StyledHero';
 
 type HeroProps = { bg: string; text: string };

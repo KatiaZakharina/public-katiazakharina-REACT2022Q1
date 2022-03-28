@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
+import { fakeLocalStorage } from '__mocks__/fakeLocalStorage ';
 import { Search } from './Search';
 
 describe('Search with empty value', () => {
@@ -21,6 +22,9 @@ describe('Search query', () => {
   const onUpdateSearch = jest.fn();
 
   beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: fakeLocalStorage,
+    });
     window.localStorage.setItem('tours_search', searchQuery);
   });
 
@@ -33,6 +37,7 @@ describe('Search query', () => {
 
     expect(screen.getByText(/Search/)).toBeInTheDocument();
     expect(screen.getByDisplayValue(searchQuery)).toBeInTheDocument();
+    expect(window.localStorage.getItem('tours_search')).toBe(searchQuery);
   });
 });
 

@@ -1,10 +1,10 @@
-import { Hero } from '../../components/Hero/Hero';
-import { Main } from '../../components/Layout/Main';
+import { Hero } from 'components/Hero/Hero';
+import { Main } from 'components/Layout/Main';
 import { CardSection } from './Tours/CardSection/CardSection';
-import { Footer } from '../../components/Footer/Footer';
+import { Footer } from 'components/Footer/Footer';
 
-import toursData from '../../db/tours_data.json';
-import bg from '../../assets/bg_img/back.jpg';
+import toursData from 'db/tours_data.json';
+import bg from 'assets/bg_img/back.jpg';
 
 export function Home() {
   return (

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import { px2vw } from './px2vw';
-import { LIGHT_GRAY } from './colorConstats';
+import { LIGHT_GRAY, WHITE } from './colorConstats';
 
 export const Global = createGlobalStyle`
  ${normalize}
@@ -32,7 +32,7 @@ export const Global = createGlobalStyle`
   body {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
-    color: #fff;
+    color: ${WHITE};
     background-color: ${LIGHT_GRAY};
 
   }

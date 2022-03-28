@@ -1,19 +1,20 @@
-import { Hero } from '../../components/Hero/Hero';
+import { Hero } from 'components/Hero/Hero';
 import { InfoSection } from './InfoSection/InfoSection';
-import { ColumnContainer } from '../../components/Layout/Container';
-import { Main } from '../../components/Layout/Main';
-import { Footer } from '../../components/Footer/Footer';
+import { ColumnContainer } from 'components/Layout/Container';
+import { Main } from 'components/Layout/Main';
+import { Footer } from 'components/Footer/Footer';
 
-import about from '../../assets/bg_img/about.jpg';
-import about1 from '../../assets/bg_img/about1.webp';
-import about2 from '../../assets/bg_img/about2.webp';
+import about from 'assets/bg_img/about.jpg';
+import about1 from 'assets/bg_img/about1.webp';
+import about2 from 'assets/bg_img/about2.webp';
+import { Side } from './InfoSection/SideEnum';
 
 export function AboutUs() {
   return (
     <Main>
       <Hero bg={about} text={'The relentless pursuit of excellence'} />
       <ColumnContainer>
-        <InfoSection side="right" img={about1}>
+        <InfoSection side={Side['right']} img={about1}>
           <h2>A transformative adventure</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus
@@ -28,7 +29,7 @@ export function AboutUs() {
             augue lacus
           </p>
         </InfoSection>
-        <InfoSection side="left" img={about2}>
+        <InfoSection side={Side['left']} img={about2}>
           <h2>Somewhere, something, someone — new</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus
