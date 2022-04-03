@@ -36,6 +36,11 @@ export const FormBody = styled.div`
   padding: 0 1.5rem;
 `;
 
+export const Label = styled.label`
+  display: block;
+  margin-top: 24px;
+`;
+
 export const Fieldset = styled.fieldset`
   position: relative;
   padding: 0;

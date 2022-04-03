@@ -21,7 +21,7 @@ export function RequestCard(props: RequestCardProps) {
     props.data;
 
   return (
-    <StyledRequestCard>
+    <StyledRequestCard data-testid="request_card">
       <RequestFullName>
         {firstName} {lastName}
       </RequestFullName>
@@ -31,7 +31,7 @@ export function RequestCard(props: RequestCardProps) {
       />
       <LabelsWrapper>
         {!withChildren || <ButtonBadge>with children</ButtonBadge>}
-        {!getNotification || <LabelBadge>notifications &#10004;</LabelBadge>}
+        {!getNotification || <LabelBadge>notifications ✔</LabelBadge>}
       </LabelsWrapper>
     </StyledRequestCard>
   );

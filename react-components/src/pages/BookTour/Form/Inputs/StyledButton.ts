@@ -5,6 +5,7 @@ import { ORANGE, WHITE } from 'styles/constants';
 export const Button = styled.button`
   display: block;
   width: 100%;
+  margin-top: 24px;
   padding: 12px 0;
   font-size: 1rem;
   font-weight: 700;
