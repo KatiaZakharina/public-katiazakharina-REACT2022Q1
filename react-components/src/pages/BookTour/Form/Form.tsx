@@ -94,7 +94,7 @@ export class Form extends React.Component<FormProps, FormState> {
   render() {
     return (
       <FormWrapper onSubmit={this.onSubmit} name="book_tour">
-        {!this.state.alertIsVisible || <InfoMessage success={true} hideAlert={this.hideAlert} />}
+        {this.state.alertIsVisible && <InfoMessage success={true} hideAlert={this.hideAlert} />}
 
         <FormHeader>
           <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>

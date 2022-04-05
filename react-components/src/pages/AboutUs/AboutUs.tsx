@@ -10,7 +10,7 @@ import { Side } from './InfoSection/SideEnum';
 
 export function AboutUs() {
   return (
-    <Main>
+    <Main data-testid="about_page">
       <Hero bg={about} text={'The relentless pursuit of excellence'} />
       <ColumnContainer>
         <InfoSection side={Side['right']} img={about1}>

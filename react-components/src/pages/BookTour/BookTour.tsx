@@ -33,7 +33,7 @@ export class BookTour extends React.Component<Record<string, never>, BookTourSta
 
   render() {
     return (
-      <StyledBookTour>
+      <StyledBookTour data-testid="book_tour_page">
         <Form onSubmit={this.updateRequests} />
 
         <RequestList requests={this.state.requests} />

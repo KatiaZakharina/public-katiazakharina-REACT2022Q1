@@ -7,7 +7,7 @@ import bg from 'assets/bg_img/back.jpg';
 
 export function Home() {
   return (
-    <Main>
+    <Main data-testid="home_page">
       <Hero bg={bg} text="Get Your Dream Vacation" />
       <CardSection data={toursData} />
     </Main>
