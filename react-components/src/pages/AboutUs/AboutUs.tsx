@@ -2,7 +2,6 @@ import { Hero } from 'components/Hero/Hero';
 import { InfoSection } from './InfoSection/InfoSection';
 import { ColumnContainer } from 'components/Layout/Container';
 import { Main } from 'components/Layout/Main';
-import { Footer } from 'components/Footer/Footer';
 
 import about from 'assets/bg_img/about.jpg';
 import about1 from 'assets/bg_img/about1.webp';
@@ -45,7 +44,6 @@ export function AboutUs() {
           </p>
         </InfoSection>
       </ColumnContainer>
-      <Footer />
     </Main>
   );
 }

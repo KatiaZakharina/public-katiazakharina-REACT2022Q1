@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK, WHITE } from 'styles/colorConstats';
+import { BLACK, WHITE } from 'styles/colorConstants';
 
 export const StyledCard = styled.div`
   display: flex;

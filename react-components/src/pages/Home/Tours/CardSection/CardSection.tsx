@@ -3,8 +3,7 @@ import { Component } from 'react';
 import { TourData } from 'db/ToursDataType';
 import { Card } from '../Card/Card';
 import { Search } from '../Search/Search';
-import { SyledCardsWrapper } from './StyledCardsSection';
-import { ColumnContainer } from 'components/Layout/Container';
+import { StyledCardSection, StyledCardsWrapper } from './StyledCardsSection';
 import { NoMatch } from '../Search/StyledSearch';
 
 type CardSectionProps = { data: Array<TourData> };
@@ -39,17 +38,17 @@ export class CardSection extends Component<CardSectionProps, CardSectionState> {
     const searchResultData = this.state.data.filter(this.filterTour.bind(this));
 
     return (
-      <ColumnContainer>
+      <StyledCardSection>
         <Search onUpdateSearch={this.onUpdateSearch} />
 
-        <SyledCardsWrapper>
+        <StyledCardsWrapper>
           {!!searchResultData.length ? (
             searchResultData.map((tour) => <Card data={tour} key={tour.id} />)
           ) : (
             <NoMatch>Your search did not match any tours.</NoMatch>
           )}
-        </SyledCardsWrapper>
-      </ColumnContainer>
+        </StyledCardsWrapper>
+      </StyledCardSection>
     );
   }
 }

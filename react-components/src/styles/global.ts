@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import { px2vw } from './px2vw';
-import { LIGHT_GRAY, WHITE } from './colorConstats';
+import { LIGHT_GRAY, WHITE } from './colorConstants';
 
 export const Global = createGlobalStyle`
  ${normalize}

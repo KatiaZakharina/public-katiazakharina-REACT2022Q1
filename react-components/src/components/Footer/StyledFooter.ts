@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import { StyledContainer } from 'components/Layout/Container';
-import { BLACK, WHITE } from 'styles/colorConstats';
+import { BLACK, WHITE } from 'styles/colorConstants';
 
 export const StyledFooter = styled.footer`
-  background-color: ${BLACK};
   padding: 10px 0;
+  background-color: ${BLACK};
 
   & ${StyledContainer} {
     justify-content: space-between;

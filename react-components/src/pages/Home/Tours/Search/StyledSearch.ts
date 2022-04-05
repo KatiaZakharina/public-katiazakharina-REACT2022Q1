@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK, GRAY, ORANGE, WHITE } from 'styles/colorConstats';
+import { BLACK, DARK_GRAY, ORANGE, WHITE } from 'styles/colorConstants';
 
 export const StyledSearch = styled.form`
   display: flex;
@@ -14,7 +14,7 @@ export const StyledSearch = styled.form`
 export const StyledInput = styled.input`
   flex: 1;
   padding: 6px 10px;
-  border: 1px ${GRAY} solid;
+  border: 1px ${DARK_GRAY} solid;
   border-right: none;
 `;
 

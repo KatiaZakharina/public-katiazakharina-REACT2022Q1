@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SEA_BLUE, WHITE } from 'styles/colorConstats';
+import { SEA_BLUE, WHITE } from 'styles/colorConstants';
 
 export const StyledHeader = styled.header`
   display: flex;

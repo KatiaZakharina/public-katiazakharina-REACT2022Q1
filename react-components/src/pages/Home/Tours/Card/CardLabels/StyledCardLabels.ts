@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BLUE, ORANGE, WHITE } from 'styles/colorConstats';
+import { BLUE, ORANGE, WHITE } from 'styles/colorConstants';
 
 export const CardLabelsWrapper = styled.div`
   position: absolute;

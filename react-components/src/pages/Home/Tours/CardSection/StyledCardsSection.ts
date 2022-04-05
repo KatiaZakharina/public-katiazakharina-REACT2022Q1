@@ -1,6 +1,11 @@
+import { ColumnContainer } from 'components/Layout/Container';
 import styled from 'styled-components';
 
-export const SyledCardsWrapper = styled.div`
+export const StyledCardSection = styled(ColumnContainer)`
+  margin-bottom: 20px;
+`;
+
+export const StyledCardsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 2rem 1rem;
