@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { StyledContainer } from 'components/Layout/Container';
-import { BLACK, WHITE } from 'styles/colorConstants';
+import { BLACK, WHITE } from 'styles/constants';
 
 export const StyledFooter = styled.footer`
   padding: 10px 0;

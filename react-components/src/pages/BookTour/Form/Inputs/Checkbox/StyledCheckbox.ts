@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GRAY, ORANGE } from 'styles/colorConstants';
+import { GRAY, ORANGE } from 'styles/constants';
 
 export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   border: 0;

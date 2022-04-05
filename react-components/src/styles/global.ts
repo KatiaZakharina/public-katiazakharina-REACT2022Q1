@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import { px2vw } from './px2vw';
-import { LIGHT_GRAY, WHITE } from './colorConstants';
+import { LIGHT_GRAY, WHITE } from './constants';
 
 export const Global = createGlobalStyle`
  ${normalize}
@@ -25,7 +25,11 @@ export const Global = createGlobalStyle`
       }
 
       @media (min-width: 1440px) {
-        font-size: ${px2vw(20)};
+        font-size: ${px2vw(18)};
+      }
+
+      @media (min-width: 1600px) {
+        font-size: ${px2vw(14)};
       }
     }
 

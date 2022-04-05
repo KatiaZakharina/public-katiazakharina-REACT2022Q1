@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { SEA_BLUE } from 'styles/colorConstants';
+import { SEA_BLUE } from 'styles/constants';
 
 export const BgWrapper = styled.div<{ bg: string }>`
   height: calc(90vh);

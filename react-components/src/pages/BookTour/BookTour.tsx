@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Description } from './Description/Description';
 import { Form, TourFormData } from './Form/Form';
 import { RequestList } from './RequestList/RequestList';
-import { StyledBookTour, FormInfo } from './StyledBookTour';
+import { StyledBookTour } from './StyledBookTour';
 
 type BookTourState = { requests: Array<TourFormData> };
 
@@ -37,10 +36,7 @@ export class BookTour extends React.Component<Record<string, never>, BookTourSta
       <StyledBookTour>
         <Form onSubmit={this.updateRequests} />
 
-        <FormInfo>
-          <Description />
-          <RequestList requests={this.state.requests} />
-        </FormInfo>
+        <RequestList requests={this.state.requests} />
       </StyledBookTour>
     );
   }

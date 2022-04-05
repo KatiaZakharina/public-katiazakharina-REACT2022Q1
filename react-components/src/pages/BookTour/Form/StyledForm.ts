@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
-import { BLACK, GRAY, ORANGE } from 'styles/colorConstants';
+import { cardStyle } from 'styles/cardStyle';
+import { GRAY, LIGHT_GRAY, ORANGE } from 'styles/constants';
 import { Button } from './Inputs';
 
 export const FormWrapper = styled.form`
+  ${cardStyle}
   position: relative;
-  padding: 0 0 1.5rem;
   margin: 48px auto 0;
   width: 100%;
+  max-width: min(calc(100vw - 100px), 550px);
   height: 100%;
   min-width: 250px;
-  max-width: 550px;
-  color: ${BLACK};
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
+  background-color: ${LIGHT_GRAY};
 
   & ${Button} {
     background-color: ${GRAY};
@@ -24,7 +23,6 @@ export const FormWrapper = styled.form`
 `;
 
 export const FormHeader = styled.header`
-  padding-top: 1.5rem;
   padding-bottom: 0.5rem;
 `;
 

@@ -1,14 +1,38 @@
 import { TourFormData } from 'pages/BookTour/Form/Form';
-import { StyledRequestCard } from './StyledRequestCard';
+import { IconList } from 'components/IconList/IconList';
+import { RequestFullName, StyledRequestCard } from './StyledRequestCard';
+import { LabelsWrapper } from '../StyledRequestList';
+import { ButtonBadge } from 'components/Badges/ButtonBadge';
+import { LabelBadge } from 'components/Badges/LabelBadge';
 
 type RequestCardProps = { data: TourFormData };
 
+const requestInfoData: Array<{ name: keyof InfoProps; icon: string; text?: string }> = [
+  { name: 'email', icon: 'mail.svg' },
+  { name: 'date', icon: 'calendar.svg' },
+  { name: 'destination', icon: 'location.svg' },
+  { name: 'pcr', icon: 'virus.svg' },
+];
+
+type InfoProps = Partial<TourFormData>;
+
 export function RequestCard(props: RequestCardProps) {
+  const { firstName, lastName, email, date, destination, withChildren, getNotification } =
+    props.data;
+
   return (
     <StyledRequestCard>
-      {Object.entries(props.data).map(([field, value], idx) => (
-        <li key={idx}>{`${field} - ${value}`}</li>
-      ))}
+      <RequestFullName>
+        {firstName} {lastName}
+      </RequestFullName>
+      <IconList
+        data={{ email, date, destination, pcr: 'pcr is negative' }}
+        dataDecoration={requestInfoData}
+      />
+      <LabelsWrapper>
+        {!withChildren || <ButtonBadge>with children</ButtonBadge>}
+        {!getNotification || <LabelBadge>notifications &#10004;</LabelBadge>}
+      </LabelsWrapper>
     </StyledRequestCard>
   );
 }

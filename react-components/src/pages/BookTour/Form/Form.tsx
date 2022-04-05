@@ -13,7 +13,7 @@ type FieldsI =
   | 'date'
   | 'destination'
   | 'withChildren'
-  | 'passport'
+  | 'pcr'
   | 'getNotification';
 
 type RefsI = MutableRefObject<HTMLInputElement> & MutableRefObject<HTMLSelectElement>;
@@ -25,7 +25,7 @@ type InputsI = {
 export type TourFormData = { [key in FieldsI]: string | boolean };
 
 type FormProps = { onSubmit: (data: TourFormData) => void };
-type FormState = { isValid: boolean; alertIsVisible: boolean };
+type FormState = { alertIsVisible: boolean };
 
 export class Form extends React.Component<FormProps, FormState> {
   private fields: Array<FieldsI>;
@@ -41,11 +41,11 @@ export class Form extends React.Component<FormProps, FormState> {
       'date',
       'destination',
       'withChildren',
-      'passport',
+      'pcr',
       'getNotification',
     ];
 
-    this.state = { isValid: false, alertIsVisible: false };
+    this.state = { alertIsVisible: false };
 
     this.inputs = this.fields.reduce((obj, fieldName) => {
       obj[fieldName] = React.createRef() as RefsI;
@@ -53,18 +53,6 @@ export class Form extends React.Component<FormProps, FormState> {
       return obj;
     }, {} as InputsI);
   }
-
-  checkValidity = (data: TourFormData): boolean => {
-    console.log(this.state.isValid, 'check', this);
-
-    const isValid = true;
-
-    this.setState(() => {
-      return { isValid: isValid };
-    });
-
-    return isValid;
-  };
 
   showAlert = () => {
     this.setState({
@@ -88,22 +76,15 @@ export class Form extends React.Component<FormProps, FormState> {
       ])
     ) as TourFormData;
 
-    console.log(this.state.isValid, 'before', this, this.state);
-
-    const isValid = this.checkValidity(data); //FIXME: async setState
-
-    this.showAlert();
     this.clearInputs();
-
-    if (!isValid) {
-      return;
-    }
     this.props.onSubmit(data);
+    this.showAlert();
   };
 
   clearInputs() {
     for (const field in this.inputs) {
       const input = this.inputs[field as keyof InputsI].current;
+
       if (input?.type === 'checkbox') {
         input.checked = false;
       } else {
@@ -113,12 +94,9 @@ export class Form extends React.Component<FormProps, FormState> {
   }
 
   render() {
-    console.log(this.state.isValid, 'render', this);
     return (
       <FormWrapper onSubmit={this.onSubmit}>
-        {!this.state.alertIsVisible || (
-          <InfoMessage success={this.state.isValid} hideAlert={this.hideAlert} />
-        )}
+        {!this.state.alertIsVisible || <InfoMessage success={true} hideAlert={this.hideAlert} />}
         <FormHeader>
           <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>
         </FormHeader>
@@ -182,13 +160,8 @@ export class Form extends React.Component<FormProps, FormState> {
           </Fieldset>
 
           <Fieldset>
-            Upload a passport photo
-            <Input
-              type="file"
-              accept=".jpg, .png, .jpeg, .webp"
-              ref={this.inputs.passport}
-              required
-            />
+            Upload a photo of the PCR test
+            <Input type="file" accept=".jpg, .png, .jpeg, .webp" ref={this.inputs.pcr} required />
           </Fieldset>
 
           <Fieldset>
@@ -197,10 +170,7 @@ export class Form extends React.Component<FormProps, FormState> {
           </Fieldset>
 
           <Fieldset>
-            <Button type="submit">
-              {/* disabled={!this.state.isValid} */}
-              Help me plan my trip
-            </Button>
+            <Button type="submit">Help me plan my trip</Button>
           </Fieldset>
         </FormBody>
       </FormWrapper>

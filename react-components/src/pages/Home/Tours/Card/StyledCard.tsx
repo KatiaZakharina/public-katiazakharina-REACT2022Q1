@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-import { BLACK, WHITE } from 'styles/colorConstants';
+import { cardStyle } from 'styles/cardStyle';
 
 export const StyledCard = styled.div`
+  ${cardStyle}
+
   display: flex;
   flex-direction: column;
+  padding: 0;
   min-width: 250px;
   max-width: 400px;
-  color: ${BLACK};
-  background-color: ${WHITE};
   border-radius: 2rem 0;
-  box-shadow: 0px 4px 30px rgb(0 0 0 / 15%);
 
   @media (max-width: 1024px) {
     min-width: 200px;

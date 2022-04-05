@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 
-import { BLACK } from 'styles/colorConstants';
+import { cardStyle } from 'styles/cardStyle';
 
 export const StyledRequestCard = styled.div`
-  margin: 30px 0;
-  color: ${BLACK};
+  ${cardStyle}
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+`;
+
+export const RequestFullName = styled.h3`
+  margin: 15px 10px;
+  max-width: 60%;
 `;

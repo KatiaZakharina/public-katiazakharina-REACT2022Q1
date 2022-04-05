@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GRAY, LIGHT_GRAY, ORANGE, WHITE } from 'styles/colorConstants';
+import { GRAY, LIGHT_GRAY, ORANGE, WHITE } from 'styles/constants';
 import { HiddenCheckbox } from '../Checkbox/StyledCheckbox';
 
 export const SwitchWrapper = styled.label`

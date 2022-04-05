@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK } from 'styles/colorConstants';
+import { BLACK } from 'styles/constants';
 import { Side } from './SideEnum';
 
 export const StyledInfoSection = styled.div<{ side: Side }>`

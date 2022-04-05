@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ORANGE, WHITE } from 'styles/colorConstants';
+import { ORANGE, WHITE } from 'styles/constants';
 
 export const ButtonBadge = styled.div`
   font-size: 1rem;

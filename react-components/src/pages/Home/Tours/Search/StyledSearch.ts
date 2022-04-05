@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK, DARK_GRAY, ORANGE, WHITE } from 'styles/colorConstants';
+import { BLACK, BOX_SHADOW_ALL, DARK_GRAY, ORANGE, WHITE } from 'styles/constants';
 
 export const StyledSearch = styled.form`
   display: flex;
@@ -8,7 +8,7 @@ export const StyledSearch = styled.form`
   padding: 20px 30px;
   width: calc(100vw - 15rem);
   background-color: ${WHITE};
-  box-shadow: 0px 4px 30px rgb(0 0 0 / 15%);
+  box-shadow: ${BOX_SHADOW_ALL};
 `;
 
 export const StyledInput = styled.input`
