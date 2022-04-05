@@ -6,23 +6,22 @@ import { Button, Input, ToggleSwitch, Checkbox } from './Inputs';
 import toursData from 'db/tours_data.json';
 import { InfoMessage } from './InfoMessage/InfoMessage';
 
-type FieldsI =
-  | 'firstName'
-  | 'lastName'
-  | 'email'
-  | 'date'
-  | 'destination'
-  | 'withChildren'
-  | 'pcr'
-  | 'getNotification';
-
 type RefsI = MutableRefObject<HTMLInputElement> & MutableRefObject<HTMLSelectElement>;
 
 type InputsI = {
-  [key in FieldsI]: RefsI;
+  [key in keyof TourFormData]: RefsI;
 };
 
-export type TourFormData = { [key in FieldsI]: string | boolean };
+export type TourFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  date: string;
+  destination: string;
+  withChildren: boolean;
+  pcr: string;
+  getNotification: boolean;
+};
 
 type FormProps = { onSubmit: (data: TourFormData) => void };
 type FormState = { alertIsVisible: boolean };
@@ -30,7 +29,7 @@ type FormState = { alertIsVisible: boolean };
 export class Form extends React.Component<FormProps, FormState> {
   private inputs: InputsI;
 
-  static fields: Array<FieldsI> = [
+  static fields: Array<keyof TourFormData> = [
     'firstName',
     'lastName',
     'email',
@@ -94,7 +93,7 @@ export class Form extends React.Component<FormProps, FormState> {
 
   render() {
     return (
-      <FormWrapper onSubmit={this.onSubmit} id="book_tour">
+      <FormWrapper onSubmit={this.onSubmit} name="book_tour">
         {!this.state.alertIsVisible || <InfoMessage success={true} hideAlert={this.hideAlert} />}
 
         <FormHeader>

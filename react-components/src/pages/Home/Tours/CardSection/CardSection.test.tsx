@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
-import { fakeLocalStorage } from '__mocks__/fakeLocalStorage ';
+import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { CardSection } from './CardSection';
 
 const data = [

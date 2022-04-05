@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import { fakeLocalStorage } from '__mocks__/fakeLocalStorage ';
+import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { Search } from './Search';
 
 describe('Search with empty value', () => {

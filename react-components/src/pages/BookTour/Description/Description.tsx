@@ -7,7 +7,7 @@ export function Description() {
     'Book the trip',
   ];
   return (
-    <StyledList>
+    <StyledList data-testid="request_description">
       {descriptionList.map((text, idx) => (
         <StyledOl key={idx}>{text}</StyledOl>
       ))}
