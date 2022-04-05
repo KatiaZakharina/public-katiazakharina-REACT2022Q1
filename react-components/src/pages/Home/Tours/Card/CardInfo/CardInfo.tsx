@@ -1,5 +1,6 @@
 import { TourData } from 'db/ToursDataType';
-import { CardIcon, CardInfoRow, StyledCardInfo } from './StyledCardInfo';
+
+import { IconList } from 'components/IconList/IconList';
 
 export const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text?: string }> = [
   { name: 'rating', icon: 'star.svg', text: 'stars' },
@@ -10,12 +11,5 @@ export const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text
 type CardInfoProps = Partial<TourData>;
 
 export const CardInfo = (props: CardInfoProps) => (
-  <StyledCardInfo>
-    {cardInfoData.map((field, idx) => (
-      <CardInfoRow key={idx}>
-        <CardIcon src={require(`assets/svg/${field.icon}`)} />
-        {`${props[field.name]} ${field.text ?? ''}`}
-      </CardInfoRow>
-    ))}
-  </StyledCardInfo>
+  <IconList data={props} dataDecoration={cardInfoData} />
 );

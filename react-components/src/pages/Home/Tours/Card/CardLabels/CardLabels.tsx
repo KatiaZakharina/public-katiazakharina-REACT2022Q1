@@ -1,10 +1,12 @@
-import { CardLabelsWrapper, CountryBadge, Price } from './StyledCardLabels';
+import { ButtonBadge } from 'components/Badges/ButtonBadge';
+import { LabelBadge } from 'components/Badges/LabelBadge';
+import { CardLabelsWrapper } from './StyledCardLabels';
 
 type CardLabelsProps = { country: string; price: number };
 
 export const CardLabels = ({ country, price }: CardLabelsProps) => (
   <CardLabelsWrapper>
-    <Price>{price}$</Price>
-    <CountryBadge>{country}</CountryBadge>
+    <LabelBadge>{price}$</LabelBadge>
+    <ButtonBadge>{country}</ButtonBadge>
   </CardLabelsWrapper>
 );
