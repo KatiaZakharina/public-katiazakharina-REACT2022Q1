@@ -7,11 +7,13 @@ type IconListProps = { data: Data; dataDecoration: DataDecoration };
 
 export const IconList = (props: IconListProps) => (
   <StyledIconList>
-    {props.dataDecoration.map((field, idx) => (
-      <IconRow key={idx}>
-        <Icon src={require(`assets/svg/${field.icon}`)} />
-        {`${props.data[field.name]} ${field.text ?? ''}`}
-      </IconRow>
-    ))}
+    {props.dataDecoration.map((field, idx) =>
+      props.data[field.name] ? (
+        <IconRow key={idx}>
+          <Icon src={require(`assets/svg/${field.icon}`)} />
+          {`${props.data[field.name]} ${field.text ?? ''}`}
+        </IconRow>
+      ) : null
+    )}
   </StyledIconList>
 );

@@ -2,7 +2,7 @@ import { ChangeEvent, Component, FormEvent } from 'react';
 
 import { SearchButton, StyledInput, StyledSearch } from './StyledSearch';
 
-type SearchProps = { onUpdateSearch: (search: string) => void };
+type SearchProps = { onUpdateSearch: (search: string) => void; disabled: boolean };
 type SearchState = { search: string };
 
 export class Search extends Component<SearchProps, SearchState> {
@@ -40,11 +40,12 @@ export class Search extends Component<SearchProps, SearchState> {
       <StyledSearch onSubmit={this.onUpdateCards}>
         <StyledInput
           type="textbox"
-          placeholder="Search"
+          placeholder="Search by location"
           onChange={this.onUpdateSearch}
           value={this.state.search ?? ''}
+          disabled={this.props.disabled}
         />
-        <SearchButton>Search</SearchButton>
+        <SearchButton disabled={this.props.disabled}>Search</SearchButton>
       </StyledSearch>
     );
   }

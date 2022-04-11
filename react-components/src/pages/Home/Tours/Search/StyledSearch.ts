@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLACK, BOX_SHADOW_ALL, DARK_GRAY, ORANGE, WHITE } from 'styles/constants';
+import { BOX_SHADOW_ALL, DARK_GRAY, GRAY, ORANGE, WHITE } from 'styles/constants';
 
 export const StyledSearch = styled.form`
   display: flex;
@@ -24,11 +24,9 @@ export const SearchButton = styled.button`
   text-align: center;
   color: ${WHITE};
   border: none;
-  background: ${ORANGE};
-`;
+  background-color: ${ORANGE};
 
-export const NoMatch = styled.p`
-  text-align: center;
-  font-size: 1.7rem;
-  color: ${BLACK};
+  &:disabled {
+    background-color: ${GRAY};
+  }
 `;

@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 import { cardInfoData } from './CardInfo/CardInfo';
 import { Card } from './Card';
-import { TourData } from 'db/ToursDataType';
+import { TourData } from 'services/ToursDataType';
 
 describe('Card', () => {
   const data: TourData = {
@@ -12,20 +13,25 @@ describe('Card', () => {
     rating: 5,
     city: 'Ribnica na Pohorju',
     country: 'Romania',
-    img: 'img1.jpg',
+    img: 'img.jpg',
     price: 1000,
-    duration: 7,
+    landmarks: '2 miles from City Center',
   };
 
-  it('renders CardLabels', () => {
-    render(<Card data={data} />);
+  let showTourDetails: jest.Mock;
 
+  beforeEach(() => {
+    showTourDetails = jest.fn();
+  });
+
+  it('renders CardLabels', () => {
+    render(<Card data={data} showTourDetails={showTourDetails} />);
     expect(screen.getByText(`${data.price}$`)).toBeInTheDocument();
     expect(screen.getByText(data.city)).toBeInTheDocument();
   });
 
   it('renders CardInfo', () => {
-    render(<Card data={data} />);
+    render(<Card data={data} showTourDetails={showTourDetails} />);
 
     cardInfoData.forEach((info) =>
       expect(
@@ -35,14 +41,23 @@ describe('Card', () => {
   });
 
   it('renders CardTitle', () => {
-    render(<Card data={data} />);
+    render(<Card data={data} showTourDetails={showTourDetails} />);
     expect(screen.getByText(data.accommodation)).toBeInTheDocument();
   });
 
   it('renders CardImg', () => {
-    render(<Card data={data} />);
+    render(<Card data={data} showTourDetails={showTourDetails} />);
 
     const img = screen.getByAltText(data.accommodation) as HTMLImageElement;
     expect(img.src).toMatch(data.img);
+  });
+
+  test('if click it calls showTourDetails', () => {
+    render(<Card data={data} showTourDetails={showTourDetails} />);
+
+    const card = screen.getByTestId('tour_card');
+    userEvent.click(card);
+
+    expect(showTourDetails).toBeCalledWith(data.id);
   });
 });

@@ -1,20 +1,25 @@
-import { TourData } from 'db/ToursDataType';
+import { TourData } from 'services/ToursDataType';
 import { CardInfo } from './CardInfo/CardInfo';
 import { CardLabels } from './CardLabels/CardLabels';
 import { StyledCard, CardTitle, CardImg, CardDescription } from './StyledCard';
 
-type CardProps = { data: TourData };
+type CardProps = { data: TourData; showTourDetails: (id: string) => void };
 
 export function Card(props: CardProps) {
-  const { accommodation, img, rating, city, country, price, duration } = props.data;
+  const { id, accommodation, img, rating, city, country, price, landmarks } = props.data;
 
   return (
-    <StyledCard data-testid="tour_card">
-      <CardImg img={require(`assets/cards/${img}`)} name={accommodation} />
+    <StyledCard
+      data-testid="tour_card"
+      onClick={() => {
+        props.showTourDetails(id);
+      }}
+    >
+      <CardImg img={img} name={accommodation} />
 
       <CardDescription>
         <CardTitle>{accommodation}</CardTitle>
-        <CardInfo rating={rating} city={city} duration={duration} />
+        <CardInfo rating={rating} city={city} landmarks={landmarks} />
         <CardLabels country={country} price={price} />
       </CardDescription>
     </StyledCard>

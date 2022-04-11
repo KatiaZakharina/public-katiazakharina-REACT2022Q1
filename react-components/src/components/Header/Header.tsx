@@ -12,7 +12,6 @@ export function Header() {
           <StyledNavLink to="/about">About us</StyledNavLink>
           <StyledNavLink to="/book-tour">Book tour</StyledNavLink>
           <StyledNavLink to="/404">404</StyledNavLink>
-          <StyledNavLink to="/wrong-path">Wrong path</StyledNavLink>
         </Nav>
       </Container>
     </StyledHeader>

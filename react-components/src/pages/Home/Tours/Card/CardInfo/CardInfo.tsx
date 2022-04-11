@@ -1,11 +1,11 @@
-import { TourData } from 'db/ToursDataType';
+import { TourData } from 'services/ToursDataType';
 
 import { IconList } from 'components/IconList/IconList';
 
 export const cardInfoData: Array<{ name: keyof CardInfoProps; icon: string; text?: string }> = [
-  { name: 'rating', icon: 'star.svg', text: 'stars' },
-  { name: 'duration', icon: 'calendar.svg', text: 'days' },
   { name: 'city', icon: 'location.svg' },
+  { name: 'rating', icon: 'star.svg', text: 'stars' },
+  { name: 'landmarks', icon: 'calendar.svg' },
 ];
 
 type CardInfoProps = Partial<TourData>;

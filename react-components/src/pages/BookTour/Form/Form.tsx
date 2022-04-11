@@ -3,8 +3,8 @@ import React, { FormEvent, MutableRefObject } from 'react';
 import { FormBody, Fieldset, FormHeader, FormHeading, FormWrapper, Label } from './StyledForm';
 import { Button, Input, ToggleSwitch, Checkbox } from './Inputs';
 
-import toursData from 'db/tours_data.json';
 import { InfoMessage } from './InfoMessage/InfoMessage';
+import { formatYmd } from 'services/dateFormatter';
 
 type RefsI = MutableRefObject<HTMLInputElement> & MutableRefObject<HTMLSelectElement>;
 
@@ -28,6 +28,7 @@ type FormState = { alertIsVisible: boolean };
 
 export class Form extends React.Component<FormProps, FormState> {
   private inputs: InputsI;
+  private toursCountry: Array<string>;
 
   static fields: Array<keyof TourFormData> = [
     'firstName',
@@ -50,6 +51,8 @@ export class Form extends React.Component<FormProps, FormState> {
 
       return obj;
     }, {} as InputsI);
+
+    this.toursCountry = ['France', 'Egypt', 'Greece'];
   }
 
   showAlert = () => {
@@ -147,7 +150,7 @@ export class Form extends React.Component<FormProps, FormState> {
               type="date"
               id="date"
               name="date"
-              min={new Date().toISOString().split('T')[0]}
+              min={formatYmd(new Date())}
               ref={this.inputs.date}
               required
             />
@@ -166,7 +169,7 @@ export class Form extends React.Component<FormProps, FormState> {
                 Country
               </option>
 
-              {Array.from(new Set(toursData.map((data) => data.country))).map((country, idx) => (
+              {this.toursCountry.map((country, idx) => (
                 <option value={country} key={idx}>
                   {country}
                 </option>
