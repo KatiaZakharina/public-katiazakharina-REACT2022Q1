@@ -2,8 +2,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import { Form, TourFormData } from './Form';
+import { Form } from './Form';
 import { passedBrowserValidation } from 'test/__mocks__/passedBrowserValidation';
+import { TourFormData } from './FormFields';
 
 type InputsEls = { [key in keyof TourFormData]: HTMLInputElement };
 
@@ -88,7 +89,7 @@ describe('Form validation', () => {
     const inputs = getInputs(container);
 
     Object.values(inputs).forEach(
-      (input) => input.type === 'checkbox' || expect(input).toBeRequired()
+      (input) => expect(input.type === 'checkbox').toBeTruthy || expect(input).toBeRequired()
     );
   });
 

@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-import { cardStyle } from 'styles/cardStyle';
+import { StyledCard } from 'components/Card/StyledCard';
 
-export const StyledRequestCard = styled.div`
-  ${cardStyle}
-
+export const StyledRequestCard = styled(StyledCard)`
   position: relative;
   display: flex;
   flex-direction: column;

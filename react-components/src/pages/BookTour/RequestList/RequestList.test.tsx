@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { RequestList } from './RequestList';
-import { TourFormData } from '../Form/Form';
+import { TourFormData } from '../Form/FormFields';
 
 const emptyRequests: Array<TourFormData> = [];
 

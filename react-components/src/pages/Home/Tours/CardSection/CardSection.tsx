@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import { TourData } from 'db/ToursDataType';
-import { Card } from '../Card/Card';
+import { TourCard } from '../Card/TourCard';
 import { Search } from '../Search/Search';
 import { StyledCardSection, StyledCardsWrapper } from './StyledCardsSection';
 import { NoMatch } from '../Search/StyledSearch';
@@ -43,7 +43,7 @@ export class CardSection extends Component<CardSectionProps, CardSectionState> {
 
         <StyledCardsWrapper>
           {!!searchResultData.length ? (
-            searchResultData.map((tour) => <Card data={tour} key={tour.id} />)
+            searchResultData.map((tour) => <TourCard data={tour} key={tour.id} />)
           ) : (
             <NoMatch>Your search did not match any tours.</NoMatch>
           )}

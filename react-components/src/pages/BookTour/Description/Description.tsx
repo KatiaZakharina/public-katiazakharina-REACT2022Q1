@@ -1,4 +1,4 @@
-import { StyledList, StyledOl } from './StyledDescription';
+import { StyledList, StyledListWrapper, StyledOl } from './StyledDescription';
 
 export function Description() {
   const descriptionList = [
@@ -7,10 +7,12 @@ export function Description() {
     'Book the trip',
   ];
   return (
-    <StyledList data-testid="request_description">
-      {descriptionList.map((text, idx) => (
-        <StyledOl key={idx}>{text}</StyledOl>
-      ))}
-    </StyledList>
+    <StyledListWrapper>
+      <StyledList data-testid="request_description">
+        {descriptionList.map((text, index) => (
+          <StyledOl key={index}>{text}</StyledOl>
+        ))}
+      </StyledList>
+    </StyledListWrapper>
   );
 }

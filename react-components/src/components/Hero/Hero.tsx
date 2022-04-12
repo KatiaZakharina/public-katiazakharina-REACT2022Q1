@@ -4,10 +4,12 @@ import { BgWrapper, LeftTitle } from './StyledHero';
 type HeroProps = { bg: string; text: string };
 
 export function Hero(props: HeroProps) {
+  const { bg, text } = props;
+
   return (
-    <BgWrapper bg={props.bg} data-testid="hero_section">
+    <BgWrapper bg={bg} data-testid="hero_section">
       <Container>
-        <LeftTitle>{props.text}</LeftTitle>
+        <LeftTitle>{text}</LeftTitle>
       </Container>
     </BgWrapper>
   );

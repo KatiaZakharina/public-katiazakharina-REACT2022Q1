@@ -1,26 +1,24 @@
 import React, { FormEvent, MutableRefObject } from 'react';
 
-import { FormBody, Fieldset, FormHeader, FormHeading, FormWrapper, Label } from './StyledForm';
+import {
+  StyledForm,
+  FormBody,
+  Fieldset,
+  FormHeader,
+  FormHeading,
+  FormWrapper,
+  Label,
+} from './StyledForm';
 import { Button, Input, ToggleSwitch, Checkbox } from './Inputs';
+import { InfoMessage } from './InfoMessage/InfoMessage';
+import { inputFields, selectFields, TourFormData } from './FormFields';
 
 import toursData from 'db/tours_data.json';
-import { InfoMessage } from './InfoMessage/InfoMessage';
 
 type RefsI = MutableRefObject<HTMLInputElement> & MutableRefObject<HTMLSelectElement>;
 
 type InputsI = {
   [key in keyof TourFormData]: RefsI;
-};
-
-export type TourFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  date: string;
-  destination: string;
-  withChildren: boolean;
-  pcr: string;
-  getNotification: boolean;
 };
 
 type FormProps = { onSubmit: (data: TourFormData) => void };
@@ -93,119 +91,66 @@ export class Form extends React.Component<FormProps, FormState> {
 
   render() {
     return (
-      <FormWrapper onSubmit={this.onSubmit} name="book_tour">
-        {this.state.alertIsVisible && <InfoMessage success={true} hideAlert={this.hideAlert} />}
+      <FormWrapper>
+        <StyledForm onSubmit={this.onSubmit} name="book_tour">
+          {this.state.alertIsVisible && <InfoMessage success={true} hideAlert={this.hideAlert} />}
 
-        <FormHeader>
-          <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>
-        </FormHeader>
+          <FormHeader>
+            <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>
+          </FormHeader>
 
-        <FormBody>
-          <Fieldset>
-            <legend>Contact Info</legend>
-            <Input
-              placeholder="First name"
-              id="firstName"
-              name="firstName"
-              minLength={3}
-              maxLength={20}
-              pattern="^[A-Za-zА-Яа-яЁё\s]{3,20}"
-              title="Letters only, from 3 to 20 characters"
-              type="text"
-              ref={this.inputs.firstName}
-              required
-            />
-            <Input
-              placeholder="Last Name"
-              id="lastName"
-              name="lastName"
-              minLength={3}
-              maxLength={20}
-              pattern="^[A-Za-zА-Яа-яЁё\s]{3,20}"
-              title="Letters only, from 3 to 20 characters"
-              type="text"
-              ref={this.inputs.lastName}
-              required
-            />
-          </Fieldset>
+          <FormBody>
+            <Fieldset>
+              <legend>Contact Info</legend>
+              <Input {...inputFields.firstName} ref={this.inputs.firstName} />
+              <Input {...inputFields.lastName} ref={this.inputs.lastName} />
+            </Fieldset>
 
-          <Label htmlFor="email">
-            Email Address
-            <Input
-              placeholder="email@gmail.com"
-              id="email"
-              name="email"
-              type="email"
-              ref={this.inputs.email}
-              required
-            />
-          </Label>
+            <Label htmlFor="email">
+              Email Address
+              <Input {...inputFields.email} ref={this.inputs.email} />
+            </Label>
 
-          <Label htmlFor="date">
-            Departure Date
-            <Input
-              type="date"
-              id="date"
-              name="date"
-              min={new Date().toISOString().split('T')[0]}
-              ref={this.inputs.date}
-              required
-            />
-          </Label>
+            <Label htmlFor="date">
+              Departure Date
+              <Input {...inputFields.date} ref={this.inputs.date} />
+            </Label>
 
-          <Label htmlFor="destination">
-            Destination
-            <Input
-              as="select"
-              id="destination"
-              name="destination"
-              ref={this.inputs.destination}
-              required
-            >
-              <option value="" hidden>
-                Country
-              </option>
-
-              {Array.from(new Set(toursData.map((data) => data.country))).map((country, idx) => (
-                <option value={country} key={idx}>
-                  {country}
+            <Label htmlFor="destination">
+              Destination
+              <Input as="select" {...selectFields.destination} ref={this.inputs.destination}>
+                <option value="" hidden>
+                  Country
                 </option>
-              ))}
-            </Input>
-          </Label>
 
-          <Label htmlFor="withChildren">
-            <Checkbox
-              idValue="withChildren"
-              nameValue="withChildren"
-              ref={this.inputs.withChildren}
-            />
-            I&apos;m traveling with children
-          </Label>
+                {Array.from(new Set(toursData.map((data) => data.country))).map(
+                  (country, index) => (
+                    <option value={country} key={index}>
+                      {country}
+                    </option>
+                  )
+                )}
+              </Input>
+            </Label>
 
-          <Label htmlFor="file">
-            Upload a photo of the PCR test
-            <Input
-              type="file"
-              id="pcr"
-              name="pcr"
-              accept=".jpg, .png, .jpeg, .webp"
-              ref={this.inputs.pcr}
-              required
-            />
-          </Label>
+            <Label htmlFor="withChildren">
+              <Checkbox {...inputFields.withChildren} ref={this.inputs.withChildren} />
+              I&apos;m traveling with children
+            </Label>
 
-          <Label htmlFor="getNotification">
-            <ToggleSwitch
-              idValue="getNotification"
-              nameValue="getNotification"
-              ref={this.inputs.getNotification}
-            />
-            I want to receive notifications about promotions
-          </Label>
+            <Label htmlFor="file">
+              Upload a photo of the PCR test
+              <Input {...inputFields.pcr} ref={this.inputs.pcr} />
+            </Label>
 
-          <Button type="submit">Help me plan my trip</Button>
-        </FormBody>
+            <Label htmlFor="getNotification">
+              <ToggleSwitch {...inputFields.getNotification} ref={this.inputs.getNotification} />I
+              want to receive notifications about promotions
+            </Label>
+
+            <Button type="submit">Help me plan my trip</Button>
+          </FormBody>
+        </StyledForm>
       </FormWrapper>
     );
   }

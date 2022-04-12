@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { cardInfoData } from './CardInfo/CardInfo';
-import { Card } from './Card';
+import { TourCard } from './TourCard';
 import { TourData } from 'db/ToursDataType';
 
-describe('Card', () => {
+describe('TourCard', () => {
   const data: TourData = {
     id: 'a5d323b1-374c-4b7e-bd13-984f5236e0ff',
     accommodation: 'Whiskey Bravo Lima Hotel',
@@ -18,14 +18,14 @@ describe('Card', () => {
   };
 
   it('renders CardLabels', () => {
-    render(<Card data={data} />);
+    render(<TourCard data={data} />);
 
     expect(screen.getByText(`${data.price}$`)).toBeInTheDocument();
     expect(screen.getByText(data.city)).toBeInTheDocument();
   });
 
   it('renders CardInfo', () => {
-    render(<Card data={data} />);
+    render(<TourCard data={data} />);
 
     cardInfoData.forEach((info) =>
       expect(
@@ -35,12 +35,12 @@ describe('Card', () => {
   });
 
   it('renders CardTitle', () => {
-    render(<Card data={data} />);
+    render(<TourCard data={data} />);
     expect(screen.getByText(data.accommodation)).toBeInTheDocument();
   });
 
   it('renders CardImg', () => {
-    render(<Card data={data} />);
+    render(<TourCard data={data} />);
 
     const img = screen.getByAltText(data.accommodation) as HTMLImageElement;
     expect(img.src).toMatch(data.img);
