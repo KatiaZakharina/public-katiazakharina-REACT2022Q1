@@ -3,10 +3,10 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 import { cardInfoData } from './CardInfo/CardInfo';
-import { Card } from './Card';
+import { TourCard } from './TourCard';
 import { TourData } from 'services/ToursDataType';
 
-describe('Card', () => {
+describe('TourCard', () => {
   const data: TourData = {
     id: 'a5d323b1-374c-4b7e-bd13-984f5236e0ff',
     accommodation: 'Whiskey Bravo Lima Hotel',
@@ -25,13 +25,13 @@ describe('Card', () => {
   });
 
   it('renders CardLabels', () => {
-    render(<Card data={data} showTourDetails={showTourDetails} />);
+    render(<TourCard data={data} showTourDetails={showTourDetails} />);
     expect(screen.getByText(`${data.price}$`)).toBeInTheDocument();
     expect(screen.getByText(data.city)).toBeInTheDocument();
   });
 
   it('renders CardInfo', () => {
-    render(<Card data={data} showTourDetails={showTourDetails} />);
+    render(<TourCard data={data} showTourDetails={showTourDetails} />);
 
     cardInfoData.forEach((info) =>
       expect(
@@ -41,19 +41,19 @@ describe('Card', () => {
   });
 
   it('renders CardTitle', () => {
-    render(<Card data={data} showTourDetails={showTourDetails} />);
+    render(<TourCard data={data} showTourDetails={showTourDetails} />);
     expect(screen.getByText(data.accommodation)).toBeInTheDocument();
   });
 
   it('renders CardImg', () => {
-    render(<Card data={data} showTourDetails={showTourDetails} />);
+    render(<TourCard data={data} showTourDetails={showTourDetails} />);
 
     const img = screen.getByAltText(data.accommodation) as HTMLImageElement;
     expect(img.src).toMatch(data.img);
   });
 
   test('if click it calls showTourDetails', () => {
-    render(<Card data={data} showTourDetails={showTourDetails} />);
+    render(<TourCard data={data} showTourDetails={showTourDetails} />);
 
     const card = screen.getByTestId('tour_card');
     userEvent.click(card);

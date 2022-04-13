@@ -1,9 +1,9 @@
-import { TourFormData } from 'pages/BookTour/Form/Form';
 import { IconList } from 'components/IconList/IconList';
 import { RequestFullName, StyledRequestCard } from './StyledRequestCard';
 import { LabelsWrapper } from '../StyledRequestList';
 import { ButtonBadge } from 'components/Badges/ButtonBadge';
 import { LabelBadge } from 'components/Badges/LabelBadge';
+import { TourFormData } from 'pages/BookTour/Form/FormFields';
 
 type RequestCardProps = { data: TourFormData };
 
@@ -30,8 +30,8 @@ export function RequestCard(props: RequestCardProps) {
         dataDecoration={requestInfoData}
       />
       <LabelsWrapper>
-        {!withChildren || <ButtonBadge>with children</ButtonBadge>}
-        {!getNotification || <LabelBadge>notifications ✔</LabelBadge>}
+        {withChildren && <ButtonBadge>with children</ButtonBadge>}
+        {getNotification && <LabelBadge>notifications ✔</LabelBadge>}
       </LabelsWrapper>
     </StyledRequestCard>
   );

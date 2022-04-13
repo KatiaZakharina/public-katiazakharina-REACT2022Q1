@@ -1,15 +1,15 @@
 import { TourData } from 'services/ToursDataType';
 import { CardInfo } from './CardInfo/CardInfo';
 import { CardLabels } from './CardLabels/CardLabels';
-import { StyledCard, CardTitle, CardImg, CardDescription } from './StyledCard';
+import { StyledTourCard, CardTitle, CardImg, CardDescription } from './StyledTourCard';
 
 type CardProps = { data: TourData; showTourDetails: (id: string) => void };
 
-export function Card(props: CardProps) {
+export function TourCard(props: CardProps) {
   const { id, accommodation, img, rating, city, country, price, landmarks } = props.data;
 
   return (
-    <StyledCard
+    <StyledTourCard
       data-testid="tour_card"
       onClick={() => {
         props.showTourDetails(id);
@@ -22,6 +22,6 @@ export function Card(props: CardProps) {
         <CardInfo rating={rating} city={city} landmarks={landmarks} />
         <CardLabels country={country} price={price} />
       </CardDescription>
-    </StyledCard>
+    </StyledTourCard>
   );
 }

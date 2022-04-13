@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Form, TourFormData } from './Form/Form';
+import { Form } from './Form/Form';
+import { TourFormData } from './Form/FormFields';
 import { RequestList } from './RequestList/RequestList';
 import { StyledBookTour } from './StyledBookTour';
 

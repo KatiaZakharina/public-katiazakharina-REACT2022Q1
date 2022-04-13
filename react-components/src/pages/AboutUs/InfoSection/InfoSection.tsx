@@ -4,10 +4,12 @@ import { StyledInfoSection } from './StyledInfoSection';
 type InfoSectionProps = { side: Side; img: string; children: React.ReactNode };
 
 export function InfoSection(props: InfoSectionProps) {
+  const { side, children, img } = props;
+
   return (
-    <StyledInfoSection side={props.side}>
-      <div>{props.children}</div>
-      <img src={props.img} alt="mountain landscape"></img>
+    <StyledInfoSection side={side}>
+      <div>{children}</div>
+      <img src={img} alt="mountain landscape"></img>
     </StyledInfoSection>
   );
 }

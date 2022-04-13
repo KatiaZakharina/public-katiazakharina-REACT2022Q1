@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-import { cardStyle } from 'styles/cardStyle';
+import { StyledCard } from 'components/Card/StyledCard';
 import { GRAY, LIGHT_GRAY, ORANGE } from 'styles/constants';
 import { Button } from './Inputs';
 
-export const FormWrapper = styled.form`
-  ${cardStyle}
-  position: relative;
+export const FormWrapper = styled(StyledCard)`
   margin: 48px auto 0;
   width: 100%;
   max-width: min(calc(100vw - 100px), 550px);
   height: 100%;
   min-width: 250px;
   background-color: ${LIGHT_GRAY};
+`;
+export const StyledForm = styled.form`
+  position: relative;
 
   & ${Button} {
     background-color: ${GRAY};

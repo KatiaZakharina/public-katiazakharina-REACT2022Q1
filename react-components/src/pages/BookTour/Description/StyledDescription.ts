@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import { cardStyle } from 'styles/cardStyle';
+import { StyledCard } from 'components/Card/StyledCard';
 import { GRAY } from 'styles/constants';
 
-export const StyledList = styled.ul`
-  ${cardStyle}
-
-  display: block;
+export const StyledListWrapper = styled(StyledCard)`
   margin-bottom: 30px;
-  padding: 1.5rem;
+`;
+
+export const StyledList = styled.ul`
+  display: block;
   min-width: 250px;
   font-size: 1rem;
   font-weight: normal;

@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { TourData, TourDetailsType } from 'services/ToursDataType';
-import { Card } from '../Card/Card';
+import { TourCard } from '../Card/TourCard';
 import { StyledCardList } from './StyledCardList';
 import { Modal } from 'components/Modal/Modal';
 import { TourDetails } from '../TourDetails/TourDetails';
@@ -57,7 +57,7 @@ export class CardList extends Component<CardListProps, CardListState> {
         <StyledCardList data-testid="tour_cards">
           {!!data.length ? (
             data.map((tour) => (
-              <Card data={tour} key={tour.id} showTourDetails={this.showTourDetails} />
+              <TourCard data={tour} key={tour.id} showTourDetails={this.showTourDetails} />
             ))
           ) : (
             <ErrorSection message="Your search did not match any tours" code="empty_search" />
