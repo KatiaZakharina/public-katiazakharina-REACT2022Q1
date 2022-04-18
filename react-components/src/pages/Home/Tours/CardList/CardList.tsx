@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { TourData, TourDetailsType } from 'services/ToursDataType';
@@ -11,71 +11,56 @@ import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
 
 type CardListProps = { data: Array<TourData> };
 
-type CardListState = {
-  modalIsVisible: boolean;
-  modalData: TourDetailsType | null;
-  modalDataLoaded: boolean;
-  errorCode: number | null;
-};
+export const CardList = ({ data }: CardListProps) => {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalData, setModalData] = useState<TourDetailsType | null>(null);
+  const [modalDataLoaded, setModalDataLoaded] = useState(false);
+  const [errorCode, setErrorCode] = useState<number | null>(null);
 
-export class CardList extends Component<CardListProps, CardListState> {
-  private service;
+  const service = new TourService(setErrorCode);
 
-  constructor(props: CardListProps) {
-    super(props);
-    this.service = new TourService(this.setErrorCode);
-    this.state = {
-      modalIsVisible: false,
-      modalData: null,
-      modalDataLoaded: false,
-      errorCode: null,
-    };
-  }
-
-  setErrorCode = (code: number) => {
-    this.setState({ errorCode: code });
+  const hideModal = () => {
+    setModalIsVisible(false);
+    setModalData(null);
   };
 
-  hideModal = () => {
-    this.setState({ modalIsVisible: false, modalData: null });
-  };
-
-  showTourDetails = async (id: string) => {
+  const showTourDetails = async (id: string) => {
     try {
-      this.setState({ modalIsVisible: true, modalDataLoaded: false });
-      const data = await this.service.getTourDetails(id);
-      this.setState({ modalData: data, modalDataLoaded: true });
+      setModalIsVisible(true);
+      setModalDataLoaded(false);
+
+      const data = await service.getTourDetails(id);
+
+      setModalData(data);
+      setModalDataLoaded(true);
     } catch (error) {
       console.error(error);
     }
   };
 
-  render() {
-    const { data } = this.props;
-    return (
-      <>
-        <StyledCardList data-testid="tour_cards">
-          {!!data.length ? (
-            data.map((tour) => (
-              <TourCard data={tour} key={tour.id} showTourDetails={this.showTourDetails} />
-            ))
-          ) : (
-            <ErrorSection message="Your search did not match any tours" code="empty_search" />
-          )}
-        </StyledCardList>
-
-        {this.state.modalIsVisible && (
-          <Modal isVisible={this.state.modalIsVisible} hideModal={this.hideModal}>
-            {this.state.errorCode ? (
-              <ErrorSection code={this.state.errorCode} />
-            ) : this.state.modalDataLoaded ? (
-              <TourDetails data={this.state.modalData} />
-            ) : (
-              <SpinnerLoading />
-            )}
-          </Modal>
+  return (
+    <>
+      <StyledCardList data-testid="tour_cards">
+        {!!data.length ? (
+          data.map((tour) => (
+            <TourCard data={tour} key={tour.id} showTourDetails={showTourDetails} />
+          ))
+        ) : (
+          <ErrorSection message="Your search did not match any tours" code="empty_search" />
         )}
-      </>
-    );
-  }
-}
+      </StyledCardList>
+
+      {modalIsVisible && (
+        <Modal isVisible={modalIsVisible} hideModal={hideModal}>
+          {errorCode ? (
+            <ErrorSection code={errorCode} />
+          ) : modalDataLoaded ? (
+            <TourDetails data={modalData} />
+          ) : (
+            <SpinnerLoading />
+          )}
+        </Modal>
+      )}
+    </>
+  );
+};

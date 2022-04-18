@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ORANGE, WHITE } from 'styles/constants';
+import { GRAY, ORANGE, WHITE } from 'styles/constants';
 
 export const Button = styled.button`
   display: block;
@@ -18,5 +18,9 @@ export const Button = styled.button`
 
   &:hover {
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+  }
+
+  &:disabled {
+    background-color: ${GRAY};
   }
 `;

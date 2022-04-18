@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { StyledCard } from 'components/Card/StyledCard';
-import { GRAY, LIGHT_GRAY, ORANGE } from 'styles/constants';
+import { GRAY, LIGHT_GRAY } from 'styles/constants';
 import { Button } from './Inputs';
 
 export const FormWrapper = styled(StyledCard)`
@@ -15,11 +15,8 @@ export const FormWrapper = styled(StyledCard)`
 export const StyledForm = styled.form`
   position: relative;
 
-  & ${Button} {
+  &:not(:valid) ${Button} {
     background-color: ${GRAY};
-  }
-  &:valid ${Button} {
-    background-color: ${ORANGE};
   }
 `;
 
@@ -37,15 +34,16 @@ export const FormBody = styled.div`
   padding: 0 1.5rem;
 `;
 
-export const Label = styled.label`
-  display: block;
-  margin-top: 24px;
+const reversed = css`
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: start;
 `;
 
-export const Fieldset = styled.fieldset`
-  position: relative;
-  padding: 0;
-  margin: 0;
-  margin-top: 24px;
-  border: 0;
+export const Label = styled.label<{ reversed?: boolean }>`
+  display: block;
+  margin-top: 15px;
+
+  ${(props) => props.reversed && reversed}
 `;

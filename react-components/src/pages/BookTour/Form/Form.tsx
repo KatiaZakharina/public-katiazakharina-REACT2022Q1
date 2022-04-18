@@ -1,156 +1,74 @@
-import React, { FormEvent, MutableRefObject } from 'react';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import {
-  StyledForm,
-  FormBody,
-  Fieldset,
-  FormHeader,
-  FormHeading,
-  FormWrapper,
-  Label,
-} from './StyledForm';
-import { Button, Input, ToggleSwitch, Checkbox } from './Inputs';
-import { inputFields, selectFields, TourFormData } from './FormFields';
+import { StyledForm, FormBody, FormHeader, FormHeading, FormWrapper, Label } from './StyledForm';
+import { Button, Input, customInputs, CustomInputs } from './Inputs';
+import { inputFields, TourFormData } from './FormFields';
 import { InfoMessage } from './InfoMessage/InfoMessage';
+import { ValidationAlert } from './Inputs/Input/StyledInput';
 
-type RefsI = MutableRefObject<HTMLInputElement> & MutableRefObject<HTMLSelectElement>;
+type FormProps = { onUpdateRequests: (data: TourFormData) => void };
 
-type InputsI = {
-  [key in keyof TourFormData]: RefsI;
+export const fields: Array<keyof TourFormData> = [
+  'firstName',
+  'lastName',
+  'email',
+  'date',
+  'destination',
+  'withChildren',
+  'pcr',
+  'getNotification',
+];
+
+export const Form = ({ onUpdateRequests }: FormProps) => {
+  const [alertIsVisible, setAlertIsVisible] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<TourFormData>({ mode: 'onChange' });
+
+  const hideAlert = () => {
+    setAlertIsVisible(false);
+  };
+
+  const onSubmit: SubmitHandler<TourFormData> = (data) => {
+    reset();
+    onUpdateRequests(data);
+    setAlertIsVisible(true);
+  };
+
+  return (
+    <FormWrapper>
+      <StyledForm onSubmit={handleSubmit(onSubmit)} name="book_tour">
+        {alertIsVisible && <InfoMessage success={true} hideAlert={hideAlert} />}
+
+        <FormHeader>
+          <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>
+        </FormHeader>
+
+        <FormBody>
+          {fields.map((name, index) => {
+            const type = inputFields[name].type as CustomInputs;
+            const InputElement = type in customInputs ? customInputs[type] : Input;
+            const error = Array.isArray(errors) ? errors?.[0] : errors;
+
+            return (
+              <Label htmlFor={name} key={index} reversed={type == 'checkbox' || type == 'switch'}>
+                {inputFields[name].labelText}
+                <InputElement name={name} register={register} inputField={inputFields[name]} />
+                <ValidationAlert>{error?.[name] ? error?.[name].message : null}</ValidationAlert>
+              </Label>
+            );
+          })}
+
+          <Button type="submit" disabled={!isValid}>
+            Help me plan my trip
+          </Button>
+        </FormBody>
+      </StyledForm>
+    </FormWrapper>
+  );
 };
-
-type FormProps = { onSubmit: (data: TourFormData) => void };
-type FormState = { alertIsVisible: boolean };
-
-export class Form extends React.Component<FormProps, FormState> {
-  private inputs: InputsI;
-  private toursCountry: Array<string>;
-
-  static fields: Array<keyof TourFormData> = [
-    'firstName',
-    'lastName',
-    'email',
-    'date',
-    'destination',
-    'withChildren',
-    'pcr',
-    'getNotification',
-  ];
-
-  constructor(props: FormProps) {
-    super(props);
-
-    this.state = { alertIsVisible: false };
-
-    this.inputs = Form.fields.reduce((obj, fieldName) => {
-      obj[fieldName] = React.createRef() as RefsI;
-
-      return obj;
-    }, {} as InputsI);
-
-    this.toursCountry = ['France', 'Egypt', 'Greece'];
-  }
-
-  showAlert = () => {
-    this.setState({
-      alertIsVisible: true,
-    });
-  };
-
-  hideAlert = () => {
-    this.setState({
-      alertIsVisible: false,
-    });
-  };
-
-  onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = Object.fromEntries(
-      Object.entries(this.inputs).map(([key, ref]) => [
-        key,
-        ref.current.type === 'checkbox' ? ref.current.checked : ref.current?.value,
-      ])
-    ) as TourFormData;
-
-    this.clearInputs();
-    this.props.onSubmit(data);
-    this.showAlert();
-  };
-
-  clearInputs() {
-    for (const field in this.inputs) {
-      const input = this.inputs[field as keyof InputsI].current;
-
-      if (input?.type === 'checkbox') {
-        input.checked = false;
-      } else {
-        input.value = '';
-      }
-    }
-  }
-
-  render() {
-    return (
-      <FormWrapper>
-        <StyledForm onSubmit={this.onSubmit} name="book_tour">
-          {this.state.alertIsVisible && <InfoMessage success={true} hideAlert={this.hideAlert} />}
-
-          <FormHeader>
-            <FormHeading>Your Dream Vacation in 3 simple steps</FormHeading>
-          </FormHeader>
-
-          <FormBody>
-            <Fieldset>
-              <legend>Contact Info</legend>
-              <Input {...inputFields.firstName} ref={this.inputs.firstName} />
-              <Input {...inputFields.lastName} ref={this.inputs.lastName} />
-            </Fieldset>
-
-            <Label htmlFor="email">
-              Email Address
-              <Input {...inputFields.email} ref={this.inputs.email} />
-            </Label>
-
-            <Label htmlFor="date">
-              Departure Date
-              <Input {...inputFields.date} ref={this.inputs.date} />
-            </Label>
-
-            <Label htmlFor="destination">
-              Destination
-              <Input as="select" {...selectFields.destination} ref={this.inputs.destination}>
-                <option value="" hidden>
-                  Country
-                </option>
-
-                {this.toursCountry.map((country, idx) => (
-                  <option value={country} key={idx}>
-                    {country}
-                  </option>
-                ))}
-              </Input>
-            </Label>
-
-            <Label htmlFor="withChildren">
-              <Checkbox {...inputFields.withChildren} ref={this.inputs.withChildren} />
-              I&apos;m traveling with children
-            </Label>
-
-            <Label htmlFor="file">
-              Upload a photo of the PCR test
-              <Input {...inputFields.pcr} ref={this.inputs.pcr} />
-            </Label>
-
-            <Label htmlFor="getNotification">
-              <ToggleSwitch {...inputFields.getNotification} ref={this.inputs.getNotification} />I
-              want to receive notifications about promotions
-            </Label>
-
-            <Button type="submit">Help me plan my trip</Button>
-          </FormBody>
-        </StyledForm>
-      </FormWrapper>
-    );
-  }
-}

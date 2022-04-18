@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 
 import { Tours } from './Tours';
@@ -146,7 +146,9 @@ describe('Event', () => {
     search.value = '';
     userEvent.type(search, query);
 
-    userEvent.click(await screen.findByRole('button'));
+    await waitFor(async () => {
+      userEvent.click(await screen.findByRole('button'));
+    });
 
     expect(axiosMock.get).toHaveBeenCalledWith(
       `/locations/v2/search?query=${query}&locale=en_US&currency=USD`
@@ -159,11 +161,15 @@ describe('Event', () => {
 
     render(<Tours />);
 
+    await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
+
     const search = (await screen.findByRole('textbox')) as HTMLInputElement;
     search.value = '';
     userEvent.type(search, query);
 
-    userEvent.keyboard('{Enter}');
+    await waitFor(async () => {
+      userEvent.keyboard('{Enter}');
+    });
 
     expect(axiosMock.get).toHaveBeenCalledWith(
       `/locations/v2/search?query=${query}&locale=en_US&currency=USD`

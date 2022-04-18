@@ -59,16 +59,16 @@ export const TourDetails = ({ data }: TourDescriptionProps) => {
       <Section>
         <SectionTitle>Amenities</SectionTitle>
         <Amenities>
-          {data.amenities.map((amenity, idx) => (
-            <div key={idx}>
+          {data.amenities.map((amenity, index) => (
+            <div key={index}>
               <AHeading>{amenity.heading}</AHeading>
               <AListItems>
-                {amenity.listItems.map(({ heading, listItems }, idx) => (
-                  <div key={idx}>
+                {amenity.listItems.map(({ heading, listItems }, index) => (
+                  <div key={index}>
                     <AHeading>{heading}</AHeading>
                     <AListItems>
-                      {listItems.map((item, idx) => (
-                        <AListItem key={idx}>{item}</AListItem>
+                      {listItems.map((item, index) => (
+                        <AListItem key={index}>{item}</AListItem>
                       ))}
                     </AListItems>
                   </div>
@@ -79,8 +79,8 @@ export const TourDetails = ({ data }: TourDescriptionProps) => {
         </Amenities>
       </Section>
       <OptionalExtras>
-        {data.optionalExtras.map((extra, idx) => (
-          <OptionalExtra key={idx} dangerouslySetInnerHTML={{ __html: extra }} />
+        {data.optionalExtras.map((extra, index) => (
+          <OptionalExtra key={index} dangerouslySetInnerHTML={{ __html: extra }} />
         ))}
       </OptionalExtras>
     </StyledTourDetails>

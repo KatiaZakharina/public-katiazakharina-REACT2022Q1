@@ -1,4 +1,8 @@
-import { InputHTMLAttributes } from 'react';
+import { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react';
+import { RegisterOptions } from 'react-hook-form';
+
+import { formatYmd } from 'services/dateFormatter';
+import { customInputs } from './Inputs';
 
 export type TourFormData = {
   firstName: string;
@@ -7,75 +11,112 @@ export type TourFormData = {
   date: string;
   destination: string;
   withChildren: boolean;
-  pcr: string;
+  pcr: File[];
   getNotification: boolean;
 };
 
-interface FormProps<T> extends InputHTMLAttributes<T> {
-  id: string;
-  name: string;
+export interface FormProps<T> extends InputHTMLAttributes<T> {
+  register?: RegisterOptions;
+  labelText?: string;
+  type: HTMLInputTypeAttribute | keyof typeof customInputs;
+  options?: string[];
 }
 
-type FormFields<T> = { [key in keyof Partial<TourFormData>]: FormProps<T> };
+export type FormFields<T> = { [key in keyof TourFormData]: FormProps<T> };
 
-export const inputFields: FormFields<HTMLInputElement> = {
+export const inputFields: FormFields<HTMLInputElement | HTMLSelectElement> = {
   firstName: {
     id: 'firstName',
-    name: 'firstName',
     type: 'text',
     placeholder: 'First name',
-    minLength: 3,
-    maxLength: 20,
-    pattern: '^[A-Za-zА-Яа-яЁёs]{3,20}',
-    title: 'Letters only, from 3 to 20 characters',
-    required: true,
+    labelText: 'First name',
+    register: {
+      required: { value: true, message: 'This is a required field' },
+      pattern: {
+        value: /^[A-Za-zА-Яа-яЁёs]{3,20}/,
+        message: 'Letters only, from 3 to 20 characters',
+      },
+      maxLength: {
+        value: 30,
+        message: 'This input exceed maxLength.',
+      },
+      minLength: {
+        value: 2,
+        message: 'This input exceed maxLength.',
+      },
+    },
   },
   lastName: {
     id: 'lastName',
-    name: 'lastName',
     type: 'text',
-    placeholder: 'Last NAme',
-    minLength: 3,
-    maxLength: 20,
-    pattern: '^[A-Za-zА-Яа-яЁёs]{3,20}',
-    title: 'Letters only, from 3 to 20 characters',
-    required: true,
+    placeholder: 'Last name',
+    labelText: 'Last name',
+    register: {
+      required: { value: true, message: 'This is a required field' },
+      pattern: {
+        value: /^[A-Za-zА-Яа-яЁёs]{3,20}/,
+        message: 'Letters only, from 3 to 20 characters',
+      },
+      maxLength: {
+        value: 30,
+        message: 'This input exceed maxLength.',
+      },
+      minLength: {
+        value: 2,
+        message: 'This input exceed maxLength.',
+      },
+    },
   },
   email: {
     id: 'email',
-    name: 'email',
     type: 'email',
     placeholder: 'email@gmail.com',
-    required: true,
+    labelText: 'Email address',
+    register: {
+      required: { value: true, message: 'This is a required field' },
+    },
   },
   date: {
     id: 'date',
-    name: 'date',
     type: 'date',
-    min: new Date().toISOString().split('T')[0],
-    required: true,
+    labelText: 'Departure Data',
+    register: {
+      required: { value: true, message: 'This is a required field' },
+      min: {
+        value: formatYmd(new Date()),
+        message: 'Only a date in the future',
+      },
+    },
+  },
+  destination: {
+    id: 'destination',
+    labelText: 'Destination',
+    type: 'select',
+    options: ['Country', 'France', 'Egypt', 'Greece'],
+    register: {
+      required: 'This is a required field',
+    },
   },
   withChildren: {
     id: 'withChildren',
-    name: 'withChildren',
+    labelText: "I'm traveling with children",
+    type: 'checkbox',
   },
   pcr: {
     id: 'pcr',
-    name: 'pcr',
     type: 'file',
-    accept: '.jpg, .png, .jpeg, .webp',
-    required: true,
+    labelText: 'Upload a photo of the PCR test',
+    register: {
+      validate: {
+        acceptedFormats: (files) =>
+          ['image/jpeg', 'image/png', 'image/gif'].includes(files[0]?.type) ||
+          'Only PNG, JPEG and GIF',
+      },
+    },
   },
   getNotification: {
     id: 'getNotification',
-    name: 'getNotification',
-  },
-};
-
-export const selectFields: FormFields<HTMLSelectElement> = {
-  destination: {
-    id: 'destination',
-    name: 'destination',
-    required: true,
+    type: 'switch',
+    labelText: 'I want to receive notifications about promotions',
   },
 };

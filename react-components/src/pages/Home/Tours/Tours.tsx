@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { TourData } from 'services/ToursDataType';
 import { Search } from './Search/Search';
@@ -8,68 +8,50 @@ import { CardList } from './CardList/CardList';
 import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
 import { TourService } from 'services/TourService';
 
-type ToursProps = Record<string, never>;
-type ToursState = {
-  data: Array<TourData>;
-  isLoaded: boolean;
-  errorCode: number | null;
-  search: string;
-};
+export const Tours = () => {
+  const [data, setData] = useState<Array<TourData>>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [errorCode, setErrorCode] = useState<number | null>(null);
+  const [search, setSearch] = useState(localStorage.getItem('tours_search') ?? '');
 
-export class Tours extends Component<ToursProps, ToursState> {
-  private defaultCity: string;
-  private service;
+  const service = useMemo(() => new TourService(setErrorCode), []);
+  const defaultCity = 'paris';
 
-  constructor(props: ToursProps) {
-    super(props);
-    this.state = {
-      data: [],
-      isLoaded: false,
-      errorCode: null,
-      search: localStorage.getItem('tours_search') ?? '',
+  const updateTours = useCallback(
+    async (city: string) => {
+      if (!city.length) {
+        city = defaultCity;
+      }
+      try {
+        setIsLoaded(false);
+        const data = await service.getBriefToursInfo(city);
+        setData(data);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [service]
+  );
+
+  useEffect(() => {
+    const update = async () => {
+      await updateTours(search);
     };
-    this.service = new TourService(this.setErrorCode);
-    this.defaultCity = 'paris';
-  }
-  async componentDidMount() {
-    await this.updateTours(this.state.search);
-  }
+    update();
+  }, [search, updateTours]);
 
-  async updateTours(city: string) {
-    if (!city.length) {
-      city = this.defaultCity;
-    }
-    try {
-      this.setState({ isLoaded: false });
-      const data = await this.service.getBriefToursInfo(city);
-      this.setState(() => ({ data, isLoaded: true }));
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  return (
+    <>
+      {errorCode ? (
+        <ErrorSection code={errorCode} />
+      ) : (
+        <StyledTours>
+          <Search onUpdateSearch={setSearch} disabled={!isLoaded} />
 
-  setErrorCode = (code: number) => {
-    this.setState({ errorCode: code });
-  };
-
-  onUpdateSearch = (search: string) => {
-    this.setState({ search });
-    this.updateTours(search);
-  };
-
-  render() {
-    return (
-      <>
-        {this.state.errorCode ? (
-          <ErrorSection code={this.state.errorCode} />
-        ) : (
-          <StyledTours>
-            <Search onUpdateSearch={this.onUpdateSearch} disabled={!this.state.isLoaded} />
-
-            {!this.state.isLoaded ? <SpinnerLoading /> : <CardList data={this.state.data} />}
-          </StyledTours>
-        )}
-      </>
-    );
-  }
-}
+          {!isLoaded ? <SpinnerLoading /> : <CardList data={data} />}
+        </StyledTours>
+      )}
+    </>
+  );
+};

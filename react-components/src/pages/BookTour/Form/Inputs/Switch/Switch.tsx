@@ -1,18 +1,13 @@
-import React from 'react';
-
-import { SwitchWrapper, Slider } from './StyledSwitch';
 import { HiddenCheckbox } from '../Checkbox/StyledCheckbox';
+import { InputProps } from '../InputTypes';
+import { Slider, SwitchWrapper } from './StyledSwitch';
 
-type TSwitchRef = HTMLInputElement;
-type TSwitchProps = { id?: string; name?: string };
-
-export const ToggleSwitch = React.forwardRef<TSwitchRef, TSwitchProps>(function (props, ref) {
-  const { id, name } = props;
-
+export const ToggleSwitch = ({ name, register, inputField }: InputProps<HTMLInputElement>) => {
+  const { register: registerOptions, type, ...attributes } = inputField;
   return (
     <SwitchWrapper>
-      <HiddenCheckbox id={id} name={name} ref={ref} />
+      <HiddenCheckbox {...register(name, registerOptions)} {...attributes} type="checkbox" />
       <Slider />
     </SwitchWrapper>
   );
-});
+};

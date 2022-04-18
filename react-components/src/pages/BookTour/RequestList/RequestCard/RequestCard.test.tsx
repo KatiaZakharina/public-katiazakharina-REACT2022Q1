@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { RequestCard } from './RequestCard';
+import { fakeImage } from 'pages/BookTour/__mocks__/formMocks';
 
 describe('RequestCard', () => {
   const data = {
@@ -11,7 +12,7 @@ describe('RequestCard', () => {
     date: '2022-04-06',
     destination: 'France',
     withChildren: false,
-    pcr: 'pcr.jpeg',
+    pcr: fakeImage,
     getNotification: false,
   };
 

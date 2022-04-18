@@ -1,52 +1,36 @@
-import { ChangeEvent, Component, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { SearchButton, StyledInput, StyledSearch } from './StyledSearch';
 
 type SearchProps = { onUpdateSearch: (search: string) => void; disabled: boolean };
-type SearchState = { search: string };
 
-export class Search extends Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
-    super(props);
-    this.state = { search: localStorage.getItem('tours_search') ?? '' };
+export const Search = (props: SearchProps) => {
+  const [search, setSearch] = useState(localStorage.getItem('tours_search') ?? '');
 
-    this.saveInLocalStorage = this.saveInLocalStorage.bind(this);
-  }
+  useEffect(() => {
+    localStorage.setItem('tours_search', search);
+  }, [search]);
 
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.saveInLocalStorage);
-  }
-
-  componentWillUnmount() {
-    this.saveInLocalStorage();
-  }
-
-  saveInLocalStorage() {
-    localStorage.setItem('tours_search', this.state.search);
-  }
-
-  onUpdateSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const onUpdateSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value;
-    this.setState({ search });
+    setSearch(search);
   };
 
-  onUpdateCards = (e: FormEvent<HTMLFormElement>) => {
+  const onUpdateCards = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.onUpdateSearch(this.state.search);
+    props.onUpdateSearch(search);
   };
 
-  render() {
-    return (
-      <StyledSearch onSubmit={this.onUpdateCards}>
-        <StyledInput
-          type="textbox"
-          placeholder="Search by location"
-          onChange={this.onUpdateSearch}
-          value={this.state.search ?? ''}
-          disabled={this.props.disabled}
-        />
-        <SearchButton disabled={this.props.disabled}>Search</SearchButton>
-      </StyledSearch>
-    );
-  }
-}
+  return (
+    <StyledSearch onSubmit={onUpdateCards}>
+      <StyledInput
+        type="textbox"
+        placeholder="Search by location"
+        onChange={onUpdateSearch}
+        value={search}
+        disabled={props.disabled}
+      />
+      <SearchButton disabled={props.disabled}>Search</SearchButton>
+    </StyledSearch>
+  );
+};

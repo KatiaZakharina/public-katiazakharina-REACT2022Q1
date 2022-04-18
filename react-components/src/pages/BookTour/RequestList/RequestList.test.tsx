@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 
 import { RequestList } from './RequestList';
 import { TourFormData } from '../Form/FormFields';
+import { fakeImage } from '../__mocks__/formMocks';
 
 const emptyRequests: Array<TourFormData> = [];
 
@@ -14,7 +15,7 @@ export const requests: Array<TourFormData> = [
     date: '2022-04-06',
     destination: 'France',
     withChildren: false,
-    pcr: 'pcr.jpeg',
+    pcr: fakeImage,
     getNotification: false,
   },
   {
@@ -24,7 +25,7 @@ export const requests: Array<TourFormData> = [
     date: '2022-05-07',
     destination: 'Italy',
     withChildren: true,
-    pcr: 'pcr.jpeg',
+    pcr: fakeImage,
     getNotification: false,
   },
   {
@@ -34,7 +35,7 @@ export const requests: Array<TourFormData> = [
     date: '2022-04-06',
     destination: 'France',
     withChildren: true,
-    pcr: 'pcr.jpeg',
+    pcr: fakeImage,
     getNotification: true,
   },
 ];

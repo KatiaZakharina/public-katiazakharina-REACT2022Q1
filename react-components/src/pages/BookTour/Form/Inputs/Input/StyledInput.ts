@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { GRAY, ORANGE } from 'styles/constants';
 
-export const Input = styled.input`
+export const StyledInput = styled.input`
   margin: 5px 0;
   padding: 7px;
   width: 100%;
@@ -15,4 +15,11 @@ export const Input = styled.input`
     border-bottom-color: ${ORANGE};
     outline: 0;
   }
+`;
+
+export const ValidationAlert = styled.p`
+  min-height: 1.6rem;
+  line-height: 1rem;
+  font-weight: bold;
+  font-size: 0.8rem;
 `;

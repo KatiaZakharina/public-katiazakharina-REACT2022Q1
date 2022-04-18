@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 import { BookTour } from './BookTour';
-import { fillInputs, getInputs, validData } from './Form/Form.test';
+import { fillInputs, getInputs } from './__mocks__/formMocks';
 import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { requests } from './RequestList/RequestList.test';
+import { validData } from './__mocks__/formData';
 
 describe('BookTour', () => {
   beforeAll(() => {
@@ -34,35 +35,44 @@ describe('BookTour', () => {
   });
 
   describe('Form submit', () => {
-    it('renders new RequestCard', () => {
+    it('renders new RequestCard', async () => {
       const { container } = render(<BookTour />);
       const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
       const inputs = getInputs(container);
-      fillInputs(validData, inputs);
+      await waitFor(() => {
+        fillInputs(validData, inputs);
+      });
 
       expect(screen.queryByTestId('request_card')).toBeNull();
 
-      userEvent.click(submitButton);
+      await waitFor(() => {
+        userEvent.click(submitButton);
+      });
 
       expect(screen.getAllByTestId('request_card')).toHaveLength(1);
     });
 
-    it('saves data in localStorage after unmounting', () => {
+    it('saves data in localStorage after unmounting', async () => {
       const { container, unmount } = render(<BookTour />);
       const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
       const inputs = getInputs(container);
-      fillInputs(validData, inputs);
+      await waitFor(() => {
+        fillInputs(validData, inputs);
+      });
 
-      expect(window.localStorage.getItem('tour_requests')).toBeNull();
+      expect(window.localStorage.getItem('tour_requests')).toBe('[]');
 
-      userEvent.click(submitButton);
+      await waitFor(() => {
+        userEvent.click(submitButton);
+      });
 
       unmount();
 
+      const fileListMock = { 0: {}, length: 1 };
       expect(window.localStorage.getItem('tour_requests')).toBe(
-        JSON.stringify([{ ...validData, pcr: '' }])
+        JSON.stringify([{ ...validData, pcr: fileListMock }])
       );
     });
   });

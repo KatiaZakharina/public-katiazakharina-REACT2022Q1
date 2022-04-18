@@ -37,7 +37,7 @@ describe('Click on card', () => {
     userEvent.click(screen.getAllByTestId('tour_card')[0]);
     expect(screen.queryByTestId('modal')).toBeInTheDocument();
 
-    const closeButton = screen.getByText('×');
+    const closeButton = screen.getByText('x');
     expect(closeButton).toBeInTheDocument();
 
     userEvent.click(closeButton);

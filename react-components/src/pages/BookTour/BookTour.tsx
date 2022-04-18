@@ -1,44 +1,28 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 import { Form } from './Form/Form';
 import { TourFormData } from './Form/FormFields';
 import { RequestList } from './RequestList/RequestList';
 import { StyledBookTour } from './StyledBookTour';
 
-type BookTourState = { requests: Array<TourFormData> };
+export const BookTour = () => {
+  const [requests, setRequests] = useState<Array<TourFormData>>(
+    JSON.parse(localStorage.getItem('tour_requests') ?? '[]')
+  );
 
-export class BookTour extends React.Component<Record<string, never>, BookTourState> {
-  constructor(props: Record<string, never>) {
-    super(props);
-
-    this.state = {
-      requests: JSON.parse(localStorage.getItem('tour_requests') ?? '[]'),
-    };
-
-    window.addEventListener('beforeunload', this.saveInLocalStorage);
-  }
-
-  updateRequests = (data: TourFormData) => {
-    this.setState((prevState) => ({
-      requests: [...prevState.requests, data],
-    }));
+  const updateRequests = (data: TourFormData) => {
+    setRequests([...requests, data]);
   };
 
-  componentWillUnmount() {
-    this.saveInLocalStorage();
-  }
+  useEffect(() => {
+    localStorage.setItem('tour_requests', JSON.stringify(requests));
+  }, [requests]);
 
-  saveInLocalStorage = () => {
-    localStorage.setItem('tour_requests', JSON.stringify(this.state.requests));
-  };
+  return (
+    <StyledBookTour data-testid="book_tour_page">
+      <Form onUpdateRequests={updateRequests} />
 
-  render() {
-    return (
-      <StyledBookTour data-testid="book_tour_page">
-        <Form onSubmit={this.updateRequests} />
-
-        <RequestList requests={this.state.requests} />
-      </StyledBookTour>
-    );
-  }
-}
+      <RequestList requests={requests} />
+    </StyledBookTour>
+  );
+};

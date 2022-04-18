@@ -1,16 +1,11 @@
-import React from 'react';
-
+import { InputProps } from '../InputTypes';
 import { CheckboxWrapper, HiddenCheckbox, Icon, StyledCheckbox } from './StyledCheckbox';
 
-type CheckboxProps = { id?: string; name?: string };
-type CheckboxRef = HTMLInputElement;
-
-export const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(function (props, ref) {
-  const { id, name } = props;
-
+export const Checkbox = ({ name, register, inputField }: InputProps<HTMLInputElement>) => {
+  const { register: registerOptions, ...attributes } = inputField;
   return (
     <CheckboxWrapper>
-      <HiddenCheckbox id={id} name={name} ref={ref} />
+      <HiddenCheckbox {...register(name, registerOptions)} {...attributes} />
       <StyledCheckbox>
         <Icon viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12" />
@@ -18,4 +13,4 @@ export const Checkbox = React.forwardRef<CheckboxRef, CheckboxProps>(function (p
       </StyledCheckbox>
     </CheckboxWrapper>
   );
-});
+};
