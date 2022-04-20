@@ -124,8 +124,8 @@ export class Form extends React.Component<FormProps, FormState> {
                   Country
                 </option>
 
-                {this.toursCountry.map((country, idx) => (
-                  <option value={country} key={idx}>
+                {this.toursCountry.map((country, index) => (
+                  <option value={country} key={index}>
                     {country}
                   </option>
                 ))}
