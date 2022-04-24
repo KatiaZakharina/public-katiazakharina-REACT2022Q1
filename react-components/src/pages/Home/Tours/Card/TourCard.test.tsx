@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 
 import { cardInfoData } from './CardInfo/CardInfo';
 import { TourCard } from './TourCard';
 import { TourData } from 'services/ToursDataType';
+import { renderWithRouter } from 'test/__mocks__/renders';
 
 describe('TourCard', () => {
   const data: TourData = {
@@ -18,20 +18,14 @@ describe('TourCard', () => {
     landmarks: '2 miles from City Center',
   };
 
-  let showTourDetails: jest.Mock;
-
-  beforeEach(() => {
-    showTourDetails = jest.fn();
-  });
-
   it('renders CardLabels', () => {
-    render(<TourCard data={data} showTourDetails={showTourDetails} />);
+    renderWithRouter(<TourCard data={data} />);
     expect(screen.getByText(`${data.price}$`)).toBeInTheDocument();
     expect(screen.getByText(data.city)).toBeInTheDocument();
   });
 
   it('renders CardInfo', () => {
-    render(<TourCard data={data} showTourDetails={showTourDetails} />);
+    renderWithRouter(<TourCard data={data} />);
 
     cardInfoData.forEach((info) =>
       expect(
@@ -41,23 +35,19 @@ describe('TourCard', () => {
   });
 
   it('renders CardTitle', () => {
-    render(<TourCard data={data} showTourDetails={showTourDetails} />);
+    renderWithRouter(<TourCard data={data} />);
     expect(screen.getByText(data.accommodation)).toBeInTheDocument();
   });
 
   it('renders CardImg', () => {
-    render(<TourCard data={data} showTourDetails={showTourDetails} />);
+    renderWithRouter(<TourCard data={data} />);
 
     const img = screen.getByAltText(data.accommodation) as HTMLImageElement;
     expect(img.src).toMatch(data.img);
   });
 
-  test('if click it calls showTourDetails', () => {
-    render(<TourCard data={data} showTourDetails={showTourDetails} />);
-
-    const card = screen.getByTestId('tour_card');
-    userEvent.click(card);
-
-    expect(showTourDetails).toBeCalledWith(data.id);
+  test('if click it open TourPage', () => {
+    renderWithRouter(<TourCard data={data} />);
+    expect(screen.getByRole('link')).toHaveAttribute('href', `/tours/${data.id}`);
   });
 });

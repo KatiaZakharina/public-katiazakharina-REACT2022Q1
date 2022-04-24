@@ -7,12 +7,14 @@ import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { CardList } from './CardList/CardList';
 import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
 import { TourService } from 'services/TourService';
+import { useAppContext } from 'AppContextProvider';
 
 export const Tours = () => {
+  const { search } = useAppContext();
+
   const [data, setData] = useState<Array<TourData>>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorCode, setErrorCode] = useState<number | null>(null);
-  const [search, setSearch] = useState(localStorage.getItem('tours_search') ?? '');
 
   const service = useMemo(() => new TourService(setErrorCode), []);
   const defaultCity = 'paris';
@@ -47,7 +49,7 @@ export const Tours = () => {
         <ErrorSection code={errorCode} />
       ) : (
         <StyledTours>
-          <Search onUpdateSearch={setSearch} disabled={!isLoaded} />
+          <Search disabled={!isLoaded} />
 
           {!isLoaded ? <SpinnerLoading /> : <CardList data={data} />}
         </StyledTours>

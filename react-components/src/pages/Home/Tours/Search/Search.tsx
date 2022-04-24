@@ -1,36 +1,32 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect } from 'react';
 
+import { useAppContext } from 'AppContextProvider';
 import { SearchButton, StyledInput, StyledSearch } from './StyledSearch';
 
-type SearchProps = { onUpdateSearch: (search: string) => void; disabled: boolean };
+type SearchProps = { disabled: boolean };
 
-export const Search = (props: SearchProps) => {
-  const [search, setSearch] = useState(localStorage.getItem('tours_search') ?? '');
+export const Search = ({ disabled }: SearchProps) => {
+  const { search, setSearch } = useAppContext();
 
   useEffect(() => {
     localStorage.setItem('tours_search', search);
   }, [search]);
 
-  const onUpdateSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value;
-    setSearch(search);
-  };
-
-  const onUpdateCards = (e: FormEvent<HTMLFormElement>) => {
+  const onUpdateSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onUpdateSearch(search);
+    const searchInput = (e.target as HTMLFormElement).elements?.[0] as HTMLInputElement;
+    setSearch(searchInput.value);
   };
 
   return (
-    <StyledSearch onSubmit={onUpdateCards}>
+    <StyledSearch onSubmit={onUpdateSearch}>
       <StyledInput
         type="textbox"
         placeholder="Search by location"
-        onChange={onUpdateSearch}
-        value={search}
-        disabled={props.disabled}
+        name="search"
+        disabled={disabled}
       />
-      <SearchButton disabled={props.disabled}>Search</SearchButton>
+      <SearchButton disabled={disabled}>Search</SearchButton>
     </StyledSearch>
   );
 };

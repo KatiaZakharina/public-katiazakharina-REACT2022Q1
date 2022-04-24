@@ -6,8 +6,7 @@ import { Button, Input, customInputs, CustomInputs } from './Inputs';
 import { inputFields, TourFormData } from './FormFields';
 import { InfoMessage } from './InfoMessage/InfoMessage';
 import { ValidationAlert } from './Inputs/Input/StyledInput';
-
-type FormProps = { onUpdateRequests: (data: TourFormData) => void };
+import { useAppContext } from 'AppContextProvider';
 
 export const fields: Array<keyof TourFormData> = [
   'firstName',
@@ -20,7 +19,8 @@ export const fields: Array<keyof TourFormData> = [
   'getNotification',
 ];
 
-export const Form = ({ onUpdateRequests }: FormProps) => {
+export const Form = () => {
+  const { requests, setRequests } = useAppContext();
   const [alertIsVisible, setAlertIsVisible] = useState(false);
 
   const {
@@ -36,7 +36,7 @@ export const Form = ({ onUpdateRequests }: FormProps) => {
 
   const onSubmit: SubmitHandler<TourFormData> = (data) => {
     reset();
-    onUpdateRequests(data);
+    setRequests([...requests, data]);
     setAlertIsVisible(true);
   };
 

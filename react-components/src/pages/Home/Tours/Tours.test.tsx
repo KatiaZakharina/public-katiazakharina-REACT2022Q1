@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 
 import { Tours } from './Tours';
@@ -8,6 +8,7 @@ import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { hotels, locationSearchAPIData } from 'services/__mocks__/fakeData';
 import { HandlersFactory } from 'services/__mocks__/hotelAPI';
 import { mockAxiosGet } from 'services/__mocks__/axiosMock';
+import { customRender } from 'test/__mocks__/renders';
 
 describe('Tours', () => {
   beforeAll(() => {
@@ -33,7 +34,7 @@ describe('Tours', () => {
     afterAll(() => server.close());
 
     it('renders Search', async () => {
-      render(<Tours />);
+      customRender(<Tours />);
 
       const search = await screen.findByRole('textbox');
       expect(search).toBeInTheDocument();
@@ -44,7 +45,7 @@ describe('Tours', () => {
     });
 
     it('renders preloader', async () => {
-      render(<Tours />);
+      customRender(<Tours />);
 
       expect(await screen.findByTestId('preloader')).toBeInTheDocument();
       expect(await screen.findByTestId('tour_cards')).toBeInTheDocument();
@@ -52,7 +53,7 @@ describe('Tours', () => {
     });
 
     it('renders all cards if the search query is empty', async () => {
-      render(<Tours />);
+      customRender(<Tours />);
 
       expect(await screen.findByRole('textbox')).toHaveValue('');
       expect(await screen.findAllByTestId('tour_card')).toHaveLength(hotels.length);
@@ -85,7 +86,7 @@ describe('Tours', () => {
       const searchQuery = 'Abcd';
       window.localStorage.setItem('tours_search', searchQuery);
 
-      render(<Tours />);
+      customRender(<Tours />);
 
       await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
 
@@ -95,6 +96,7 @@ describe('Tours', () => {
   });
 
   describe('with error location API response', () => {
+    const consoleErrorFn = jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
     const errorCode = 404;
 
     const errorLocationHandlers = new HandlersFactory([
@@ -106,19 +108,18 @@ describe('Tours', () => {
 
     beforeAll(() => errorLocationServer.listen());
     afterEach(() => errorLocationServer.resetHandlers());
-    afterAll(() => errorLocationServer.close());
+    afterAll(() => {
+      errorLocationServer.close();
+      consoleErrorFn.mockRestore();
+    });
 
     it('shows error  error message', async () => {
-      const consoleErrorFn = jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
-
-      render(<Tours />);
+      customRender(<Tours />);
 
       await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
 
       expect(await screen.findByText(`ERROR CODE: ${errorCode}`)).toBeInTheDocument();
       expect(consoleErrorFn).toHaveBeenCalled();
-
-      consoleErrorFn.mockRestore();
     });
   });
 });
@@ -138,7 +139,7 @@ describe('Event', () => {
     const axiosMock = mockAxiosGet(locationSearchAPIData);
     const query = 'Italy';
 
-    render(<Tours />);
+    customRender(<Tours />);
 
     await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
 
@@ -159,7 +160,7 @@ describe('Event', () => {
     const axiosMock = mockAxiosGet(locationSearchAPIData);
     const query = 'Spain';
 
-    render(<Tours />);
+    customRender(<Tours />);
 
     await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
 

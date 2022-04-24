@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Form } from './Form/Form';
-import { TourFormData } from './Form/FormFields';
 import { RequestList } from './RequestList/RequestList';
 import { StyledBookTour } from './StyledBookTour';
+import { useAppContext } from 'AppContextProvider';
 
 export const BookTour = () => {
-  const [requests, setRequests] = useState<Array<TourFormData>>(
-    JSON.parse(localStorage.getItem('tour_requests') ?? '[]')
-  );
-
-  const updateRequests = (data: TourFormData) => {
-    setRequests([...requests, data]);
-  };
+  const { requests } = useAppContext();
 
   useEffect(() => {
     localStorage.setItem('tour_requests', JSON.stringify(requests));
@@ -20,7 +14,7 @@ export const BookTour = () => {
 
   return (
     <StyledBookTour data-testid="book_tour_page">
-      <Form onUpdateRequests={updateRequests} />
+      <Form />
 
       <RequestList requests={requests} />
     </StyledBookTour>

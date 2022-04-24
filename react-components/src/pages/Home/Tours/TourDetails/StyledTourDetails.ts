@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 import { IconRow } from 'components/IconList/StyledIconList';
-import { BLUE, DARK_GRAY, ORANGE, WHITE } from 'styles/constants';
+import { BLACK, BLUE, DARK_GRAY, ORANGE, WHITE } from 'styles/constants';
+import { StyledContainer } from 'components/Layout/Container';
 
-export const StyledTourDetails = styled.div`
+export const StyledTourDetails = styled(StyledContainer)`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  color: ${BLACK};
 `;
 
 export const Section = styled.section`
@@ -58,7 +59,7 @@ export const TourImg = styled.img`
 
 export const Overview = styled.div`
   padding: 10px;
-  width: 50%;
+  width: 100%;
   color: ${WHITE};
   background-color: ${BLUE};
 

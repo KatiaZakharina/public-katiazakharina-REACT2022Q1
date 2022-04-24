@@ -2,16 +2,15 @@ import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
+import { renderWithContext } from 'test/__mocks__/renders';
 
 import { invalidData, validData } from '../__mocks__/formData';
 import { fillInputs, getInputs } from '../__mocks__/formMocks';
 import { Form } from './Form';
 
 describe('Form', () => {
-  const onUpdateRequests = jest.fn();
-
   it('is rendered correctly', () => {
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = render(<Form />);
 
     expect(screen.getByRole('form')).toBeInTheDocument();
     Object.values(getInputs(container)).forEach((input) => expect(input).toBeInTheDocument());
@@ -20,10 +19,8 @@ describe('Form', () => {
 });
 
 describe('Form validation', () => {
-  const onUpdateRequests = jest.fn();
-
   test('if all input data is required', () => {
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = render(<Form />);
 
     const inputs = getInputs(container);
 
@@ -33,9 +30,7 @@ describe('Form validation', () => {
   });
 
   test('if submission is disabled if the data is incorrect', async () => {
-    const onUpdateRequests = jest.fn();
-
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = render(<Form />);
 
     const inputs = getInputs(container);
 
@@ -48,10 +43,8 @@ describe('Form validation', () => {
 });
 
 describe('when filling out the Form', () => {
-  const onUpdateRequests = jest.fn();
-
   it('display data correctly', async () => {
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = render(<Form />);
 
     const inputs = getInputs(container);
 
@@ -68,9 +61,7 @@ describe('when filling out the Form', () => {
 
 describe('Form submit', () => {
   it('cleans inputs', async () => {
-    const onUpdateRequests = jest.fn();
-
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = renderWithContext(<Form />);
     const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
     const inputs = getInputs(container);
@@ -84,14 +75,12 @@ describe('Form submit', () => {
     });
 
     expect(screen.getByRole('form')).toHaveFormValues({});
-    expect(onUpdateRequests).toHaveBeenCalled();
   });
 
   it('shows and hides success message', async () => {
-    const onUpdateRequests = jest.fn();
     jest.useFakeTimers();
 
-    const { container } = render(<Form onUpdateRequests={onUpdateRequests} />);
+    const { container } = renderWithContext(<Form />);
 
     const inputs = getInputs(container);
     await waitFor(() => {

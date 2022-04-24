@@ -33,11 +33,17 @@ export const Global = createGlobalStyle`
       }
     }
 
-  body {
+  body, html {
+    height: 100%;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
     color: ${WHITE};
     background-color: ${LIGHT_GRAY};
+  }
 
+  #root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
   }
 `;

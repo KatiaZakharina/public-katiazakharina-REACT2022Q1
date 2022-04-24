@@ -130,7 +130,11 @@ export class TourService {
     }
   }
 
-  async getTourDetails(id: string): Promise<TourDetailsType> {
+  async getTourDetails(id: string | undefined): Promise<TourDetailsType> {
+    if (!id) {
+      return {} as TourDetailsType;
+    }
+
     try {
       const description = await this.getTourDescription(id);
       const img = await this.getTourImage(id);

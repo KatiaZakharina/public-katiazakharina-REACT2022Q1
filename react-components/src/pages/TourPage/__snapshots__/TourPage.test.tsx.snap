@@ -1,0 +1,421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TourPage with correct API response displays hotel details 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-bdvvtL kSlYyk"
+  >
+    <section
+      class="sc-eCImPb dskChN"
+    >
+      <a
+        class=""
+        href="/"
+      >
+        <img
+          alt="logo image"
+          class="sc-hKwDye eYBWIV"
+          src="logo.svg"
+        />
+      </a>
+      <nav
+        class="sc-gsDKAQ bAkjkz"
+      >
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/about"
+        >
+          About us
+        </a>
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/book-tour"
+        >
+          Book tour
+        </a>
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/404"
+        >
+          404
+        </a>
+      </nav>
+    </section>
+  </header>
+  <div
+    class="sc-hOGkXu fgKFTu"
+    data-testid="tour_details"
+  >
+    <section
+      class="sc-eCImPb sc-hiwPVj dskChN yNhlZ"
+      data-testid="tour_details"
+    >
+      <section
+        class="sc-ehCJOs lfshLt"
+      >
+        <div
+          class="sc-gGCDDS ceKXJz"
+        >
+          <h1
+            class="sc-faUpoM iorrhq"
+          >
+            Candlewood Suites Galveston, an IHG Hotel
+          </h1>
+          <span
+            class="sc-Galmp jobnHI"
+          >
+            <b>
+              Hotel with outdoor pool, near Moody Gardens 
+            </b>
+          </span>
+        </div>
+        <p
+          class="sc-fWCJzd jUsgKP"
+        >
+          808 61st St, Galveston, TX, 77551, United States of America
+        </p>
+        <div
+          class="sc-clIzBv iARosr"
+        >
+          <img
+            class="sc-dvQaRk bDVXGf"
+            src="https://exp.cdn-hotels.com/hotels/2000000/1990000/1988100/1988040/a32e4d89_z.jpg"
+          />
+          <div
+            class="sc-TBWPX hvYLMr"
+          >
+            <ul
+              class="sc-dJjYzT dzLhlc"
+            >
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                2.5 stars
+              </li>
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                $89 
+              </li>
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                7.2/10 
+              </li>
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                Tiki Island neighborhood
+              </li>
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                Check-in time 3 PM-10:00 PM 
+              </li>
+              <li
+                class="sc-hGPBjI fipFxB"
+              >
+                <img
+                  class="sc-dlVxhl bwminb"
+                  src="[object Object]"
+                />
+                Check-out time is  11 AM 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section
+        class="sc-ehCJOs lfshLt"
+      >
+        <h2
+          class="sc-lcepkR lkUjRe"
+        >
+          Amenities
+        </h2>
+        <div
+          class="sc-hmjpVf eiHpim"
+        >
+          <div>
+            <h3
+              class="sc-eLwHnm ezTZgz"
+            >
+              In the hotel
+            </h3>
+            <ul
+              class="sc-bTfYFJ hxBdjY"
+            >
+              <div>
+                <h3
+                  class="sc-eLwHnm ezTZgz"
+                >
+                  Food and drink
+                </h3>
+                <ul
+                  class="sc-bTfYFJ hxBdjY"
+                >
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Coffee/tea in a common area
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Barbecue grills
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3
+                  class="sc-eLwHnm ezTZgz"
+                >
+                  Languages Spoken
+                </h3>
+                <ul
+                  class="sc-bTfYFJ hxBdjY"
+                >
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    English
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Hindi
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Spanish
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Urdu
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="sc-eLwHnm ezTZgz"
+            >
+              In the room
+            </h3>
+            <ul
+              class="sc-bTfYFJ hxBdjY"
+            >
+              <div>
+                <h3
+                  class="sc-eLwHnm ezTZgz"
+                >
+                  Home comforts
+                </h3>
+                <ul
+                  class="sc-bTfYFJ hxBdjY"
+                >
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Air conditioning
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Coffee/tea maker
+                  </li>
+                  <li
+                    class="sc-kHOZwM kzXTer"
+                  >
+                    Iron/ironing board
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section
+        class="sc-ehCJOs sc-ZOtfp lfshLt dyvpgw"
+      >
+        <p
+          class="sc-jOxtWs imaTch"
+        />
+        <p>
+          <strong>
+            Pets
+          </strong>
+           are allowed for an extra charge of USD 75 per pet, per night
+        </p>
+        Service animals exempt from fees
+        <p />
+      </section>
+    </section>
+  </div>
+  <footer
+    class="sc-gKclnd MQsgS"
+  >
+    <section
+      class="sc-eCImPb dskChN"
+    >
+      <a
+        href="https://rs.school/react/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          class="sc-iCfMLu cYkerD"
+          src="rs_school_js.svg"
+        />
+      </a>
+      <div
+        class="sc-furwcr eVEnJl"
+      >
+        <a
+          href="https://github.com/KatiaZakharina"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Katia Zakharina
+        </a>
+        <span>
+          2022
+        </span>
+      </div>
+    </section>
+  </footer>
+</DocumentFragment>
+`;
+
+exports[`TourPage with error details API response displays error message 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-bdvvtL kSlYyk"
+  >
+    <section
+      class="sc-eCImPb dskChN"
+    >
+      <a
+        class=""
+        href="/"
+      >
+        <img
+          alt="logo image"
+          class="sc-hKwDye eYBWIV"
+          src="logo.svg"
+        />
+      </a>
+      <nav
+        class="sc-gsDKAQ bAkjkz"
+      >
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/about"
+        >
+          About us
+        </a>
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/book-tour"
+        >
+          Book tour
+        </a>
+        <a
+          class="sc-dkPtRN cMHRyC"
+          href="/404"
+        >
+          404
+        </a>
+      </nav>
+    </section>
+  </header>
+  <div
+    class="sc-hOGkXu fgKFTu"
+    data-testid="tour_details"
+  >
+    <div
+      class="sc-ksdxgE jxQdap"
+    >
+      <img
+        alt="error illustration"
+        class="sc-hBUSln ddFNXy"
+        src="no_connection.svg"
+      />
+      <div
+        class="sc-fotOHu jJEIlX"
+      >
+        <h2
+          class="sc-fFeiMQ melgw"
+        >
+          Internal Server Error
+        </h2>
+        <p
+          class="sc-bkkeKt guFekF"
+        >
+          Sorry, there were some technical issues while processing yous request
+        </p>
+        <p
+          class="sc-ieecCq klKrxp"
+        >
+          ERROR CODE: 500
+        </p>
+      </div>
+    </div>
+  </div>
+  <footer
+    class="sc-gKclnd MQsgS"
+  >
+    <section
+      class="sc-eCImPb dskChN"
+    >
+      <a
+        href="https://rs.school/react/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          class="sc-iCfMLu cYkerD"
+          src="rs_school_js.svg"
+        />
+      </a>
+      <div
+        class="sc-furwcr eVEnJl"
+      >
+        <a
+          href="https://github.com/KatiaZakharina"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Katia Zakharina
+        </a>
+        <span>
+          2022
+        </span>
+      </div>
+    </section>
+  </footer>
+</DocumentFragment>
+`;

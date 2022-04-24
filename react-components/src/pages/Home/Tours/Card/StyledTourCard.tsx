@@ -9,6 +9,7 @@ export const StyledTourCard = styled(StyledCard)`
   min-width: 250px;
   max-width: 400px;
   border-radius: 2rem 0;
+  text-decoration: none;
 
   @media (max-width: 1024px) {
     min-width: 200px;
