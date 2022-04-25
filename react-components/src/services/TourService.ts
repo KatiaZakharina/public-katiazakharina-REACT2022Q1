@@ -7,23 +7,19 @@ import defaultImg from 'assets/cards/default_image.png';
 import { FilterData } from 'pages/Home/Tours/FilterPanel/FilterFields';
 
 export class TourService {
-  private apiKey = 'e2c6618498msh093b9797b0407a0p1da5dbjsn57f1b9fa3a2d';
-
   private setErrorCode: (code: number) => void;
   private axios: AxiosInstance;
 
   private defaultParameters = { locale: 'en_US', currency: 'USD' };
 
-  static basePath = 'https://hotels4.p.rapidapi.com';
-
   constructor(setErrorCode: (code: number) => void) {
     this.setErrorCode = setErrorCode;
 
     this.axios = axios.create({
-      baseURL: TourService.basePath,
+      baseURL: `https://${process.env.REACT_APP_RAPID_API_HOST}`,
       headers: {
-        'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-        'X-RapidAPI-Key': this.apiKey,
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST as string,
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY as string,
       },
     });
   }
