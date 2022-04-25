@@ -43,26 +43,49 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
     </section>
   </header>
   <div
-    class="sc-hOGkXu fgKFTu"
+    class="sc-GEbAx bnyQPd"
     data-testid="tour_details"
   >
     <section
-      class="sc-eCImPb sc-hiwPVj dskChN yNhlZ"
+      class="sc-eCImPb sc-fWCJzd dskChN kwJKmZ"
       data-testid="tour_details"
     >
+      <div
+        class="sc-clIzBv briFuw"
+      >
+        <button
+          class="sc-Galmp exLVkH"
+        >
+          ← Back
+        </button>
+        <a
+          class="sc-faUpoM bcbDck"
+          href="/"
+        >
+          Tours
+        </a>
+         / 
+        <a
+          class="sc-faUpoM bcbDck"
+          href="/tours/12345"
+        >
+          Candlewood Suites Galvest...
+        </a>
+         / 
+      </div>
       <section
-        class="sc-ehCJOs lfshLt"
+        class="sc-dvQaRk cGyGES"
       >
         <div
-          class="sc-gGCDDS ceKXJz"
+          class="sc-jIkXHa bKella"
         >
           <h1
-            class="sc-faUpoM iorrhq"
+            class="sc-jOxtWs gCUsFv"
           >
             Candlewood Suites Galveston, an IHG Hotel
           </h1>
           <span
-            class="sc-Galmp jobnHI"
+            class="sc-hmjpVf dcEkvA"
           >
             <b>
               Hotel with outdoor pool, near Moody Gardens 
@@ -70,73 +93,73 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
           </span>
         </div>
         <p
-          class="sc-fWCJzd jUsgKP"
+          class="sc-eLwHnm iqOKBU"
         >
           808 61st St, Galveston, TX, 77551, United States of America
         </p>
         <div
-          class="sc-clIzBv iARosr"
+          class="sc-ZOtfp erSvxk"
         >
           <img
-            class="sc-dvQaRk bDVXGf"
+            class="sc-bTfYFJ jTxfRF"
             src="https://exp.cdn-hotels.com/hotels/2000000/1990000/1988100/1988040/a32e4d89_z.jpg"
           />
           <div
-            class="sc-TBWPX hvYLMr"
+            class="sc-kHOZwM bfeloR"
           >
             <ul
-              class="sc-dJjYzT dzLhlc"
+              class="sc-giYglK bkJEMY"
             >
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 2.5 stars
               </li>
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 $89 
               </li>
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 7.2/10 
               </li>
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 Tiki Island neighborhood
               </li>
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 Check-in time 3 PM-10:00 PM 
               </li>
               <li
-                class="sc-hGPBjI fipFxB"
+                class="sc-ezbkAF cDSUtC"
               >
                 <img
-                  class="sc-dlVxhl bwminb"
+                  class="sc-bYoBSM dTBcIh"
                   src="[object Object]"
                 />
                 Check-out time is  11 AM 
@@ -146,41 +169,41 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
         </div>
       </section>
       <section
-        class="sc-ehCJOs lfshLt"
+        class="sc-dvQaRk cGyGES"
       >
         <h2
-          class="sc-lcepkR lkUjRe"
+          class="sc-TBWPX cPcIzM"
         >
           Amenities
         </h2>
         <div
-          class="sc-hmjpVf eiHpim"
+          class="sc-jUosCB fcYQXD"
         >
           <div>
             <h3
-              class="sc-eLwHnm ezTZgz"
+              class="sc-jQrDum bpwzsP"
             >
               In the hotel
             </h3>
             <ul
-              class="sc-bTfYFJ hxBdjY"
+              class="sc-fvxzrP eSSaBh"
             >
               <div>
                 <h3
-                  class="sc-eLwHnm ezTZgz"
+                  class="sc-jQrDum bpwzsP"
                 >
                   Food and drink
                 </h3>
                 <ul
-                  class="sc-bTfYFJ hxBdjY"
+                  class="sc-fvxzrP eSSaBh"
                 >
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Coffee/tea in a common area
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Barbecue grills
                   </li>
@@ -188,30 +211,30 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
               </div>
               <div>
                 <h3
-                  class="sc-eLwHnm ezTZgz"
+                  class="sc-jQrDum bpwzsP"
                 >
                   Languages Spoken
                 </h3>
                 <ul
-                  class="sc-bTfYFJ hxBdjY"
+                  class="sc-fvxzrP eSSaBh"
                 >
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     English
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Hindi
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Spanish
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Urdu
                   </li>
@@ -221,34 +244,34 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
           </div>
           <div>
             <h3
-              class="sc-eLwHnm ezTZgz"
+              class="sc-jQrDum bpwzsP"
             >
               In the room
             </h3>
             <ul
-              class="sc-bTfYFJ hxBdjY"
+              class="sc-fvxzrP eSSaBh"
             >
               <div>
                 <h3
-                  class="sc-eLwHnm ezTZgz"
+                  class="sc-jQrDum bpwzsP"
                 >
                   Home comforts
                 </h3>
                 <ul
-                  class="sc-bTfYFJ hxBdjY"
+                  class="sc-fvxzrP eSSaBh"
                 >
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Air conditioning
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Coffee/tea maker
                   </li>
                   <li
-                    class="sc-kHOZwM kzXTer"
+                    class="sc-fbyfCU hcERXm"
                   >
                     Iron/ironing board
                   </li>
@@ -259,10 +282,10 @@ exports[`TourPage with correct API response displays hotel details 1`] = `
         </div>
       </section>
       <section
-        class="sc-ehCJOs sc-ZOtfp lfshLt dyvpgw"
+        class="sc-dvQaRk sc-dtMgUX cGyGES jgUVxI"
       >
         <p
-          class="sc-jOxtWs imaTch"
+          class="sc-cZMNgc dsTFMK"
         />
         <p>
           <strong>
@@ -353,32 +376,32 @@ exports[`TourPage with error details API response displays error message 1`] = `
     </section>
   </header>
   <div
-    class="sc-hOGkXu fgKFTu"
+    class="sc-GEbAx bnyQPd"
     data-testid="tour_details"
   >
     <div
-      class="sc-ksdxgE jxQdap"
+      class="sc-kfPuZi hiYQdM"
     >
       <img
         alt="error illustration"
-        class="sc-hBUSln ddFNXy"
+        class="sc-fKVqWL kTIdEB"
         src="no_connection.svg"
       />
       <div
-        class="sc-fotOHu jJEIlX"
+        class="sc-bBHxTw hgVDmX"
       >
         <h2
-          class="sc-fFeiMQ melgw"
+          class="sc-iwjdpV irfMDu"
         >
           Internal Server Error
         </h2>
         <p
-          class="sc-bkkeKt guFekF"
+          class="sc-cxpSdN jljmov"
         >
           Sorry, there were some technical issues while processing yous request
         </p>
         <p
-          class="sc-ieecCq klKrxp"
+          class="sc-llYSUQ itJvmD"
         >
           ERROR CODE: 500
         </p>

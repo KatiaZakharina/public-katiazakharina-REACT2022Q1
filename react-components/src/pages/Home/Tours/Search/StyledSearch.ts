@@ -1,21 +1,11 @@
 import styled from 'styled-components';
 
-import { BOX_SHADOW_ALL, DARK_GRAY, GRAY, ORANGE, WHITE } from 'styles/constants';
+import { GRAY, ORANGE, WHITE } from 'styles/constants';
 
 export const StyledSearch = styled.form`
   display: flex;
-  margin: 0 auto 30px;
-  padding: 20px 30px;
-  width: calc(100vw - 15rem);
-  background-color: ${WHITE};
-  box-shadow: ${BOX_SHADOW_ALL};
-`;
-
-export const StyledInput = styled.input`
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px ${DARK_GRAY} solid;
-  border-right: none;
+  width: 100%;
+  height: 40px;
 `;
 
 export const SearchButton = styled.button`
@@ -25,6 +15,7 @@ export const SearchButton = styled.button`
   color: ${WHITE};
   border: none;
   background-color: ${ORANGE};
+  cursor: pointer;
 
   &:disabled {
     background-color: ${GRAY};

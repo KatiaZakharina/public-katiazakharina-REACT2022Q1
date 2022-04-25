@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
-import { renderWithContext } from 'test/__mocks__/renders';
 
+import { renderWithContext } from 'test/__mocks__/renders';
 import { invalidData, validData } from '../__mocks__/formData';
 import { fillInputs, getInputs } from '../__mocks__/formMocks';
 import { Form } from './Form';

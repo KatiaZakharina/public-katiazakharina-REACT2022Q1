@@ -38,7 +38,7 @@ describe('Search query', () => {
     window.localStorage.clear();
   });
 
-  it.skip('should be initialized with a local storage value', () => {
+  it('should be initialized with a local storage value', () => {
     renderWithContext(<Search disabled={false} />);
 
     expect(screen.getByText(/Search/)).toBeInTheDocument();

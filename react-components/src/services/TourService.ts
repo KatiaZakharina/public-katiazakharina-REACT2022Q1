@@ -4,14 +4,14 @@ import { HotelI, TourData, TourDescriptionType, TourDetailsType } from './ToursD
 import { dateAfter, formatYmd } from './dateFormatter';
 
 import defaultImg from 'assets/cards/default_image.png';
+import { FilterData } from 'pages/Home/Tours/FilterPanel/FilterFields';
 
 export class TourService {
-  private apiKey = '429bbe3fa7mshf19836439e9ee89p1a1a67jsn4d4c6f394263';
+  private apiKey = 'e2c6618498msh093b9797b0407a0p1da5dbjsn57f1b9fa3a2d';
 
   private setErrorCode: (code: number) => void;
   private axios: AxiosInstance;
 
-  private baseOffset = 24;
   private defaultParameters = { locale: 'en_US', currency: 'USD' };
 
   static basePath = 'https://hotels4.p.rapidapi.com';
@@ -45,7 +45,7 @@ export class TourService {
     }
   }
 
-  async getLocationId(city: string): Promise<string> {
+  async getLocationId(city: string): Promise<string | null> {
     const params = {
       query: city,
       ...this.defaultParameters,
@@ -61,23 +61,33 @@ export class TourService {
     }
   }
 
-  async getHotels(id: string | null, page = 1): Promise<Array<HotelI>> {
-    if (!id) return [];
+  async getHotels(
+    id: string | null,
+    filters: FilterData,
+    page: number
+  ): Promise<{ hotelsData: Array<HotelI>; totalPages: number }> {
+    if (!id) return { hotelsData: [], totalPages: 1 };
 
     const params = {
       destinationId: id,
       pageNumber: page.toString(),
-      pageSize: this.baseOffset.toString(),
+      pageSize: filters.pageSize.toString(),
+      starRatings: filters.rating.toString(),
       checkIn: formatYmd(new Date()),
       checkOut: formatYmd(dateAfter(new Date(), 14)),
-      sortOrder: 'PRICE',
+      sortOrder: filters.sortOrder,
       ...this.defaultParameters,
     };
 
     try {
       const response = await this.getResponse('properties/list', params);
       const data = response.data;
-      return data?.data?.body?.searchResults?.results || [];
+
+      const { results, totalCount } = data?.data?.body?.searchResults;
+
+      const hotelsData = results || [];
+
+      return { hotelsData, totalPages: Math.ceil(totalCount / +filters.pageSize) };
     } catch (err) {
       throw Error('Failed to load hotels');
     }
@@ -93,7 +103,7 @@ export class TourService {
       const response = await this.getResponse('properties/get-details', params);
       const data = await response.data;
 
-      const { propertyDescription, atAGlance, guestReviews, amenities, smallPrint, roomsAndRates } =
+      const { propertyDescription, atAGlance, guestReviews, amenities, smallPrint } =
         data.data.body;
 
       return {
@@ -107,7 +117,6 @@ export class TourService {
         amenities: amenities,
         optionalExtras: smallPrint.optionalExtras,
         arrivingLeaving: atAGlance.keyFacts.arrivingLeaving,
-        img: roomsAndRates?.rooms?.[0]?.images?.[0]?.thumbnailUrl,
       };
     } catch (err) {
       console.error(err);
@@ -145,10 +154,14 @@ export class TourService {
     }
   }
 
-  async getBriefToursInfo(city: string): Promise<Array<TourData>> {
+  async getBriefToursInfo(
+    city: string,
+    filters: FilterData,
+    page: number
+  ): Promise<{ data: Array<TourData>; total: number }> {
     try {
       const locationId = await this.getLocationId(city);
-      const hotelsData = await this.getHotels(locationId);
+      const { hotelsData, totalPages } = await this.getHotels(locationId, filters, page);
 
       const briefHotelsData = hotelsData.map((hotel) => ({
         id: hotel.id.toString(),
@@ -162,7 +175,7 @@ export class TourService {
           ? `${hotel.landmarks[0].distance} from ${hotel.landmarks[0].label}`
           : undefined,
       }));
-      return briefHotelsData;
+      return { data: briefHotelsData, total: totalPages };
     } catch (error) {
       throw error;
     }

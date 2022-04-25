@@ -63,7 +63,7 @@ describe('BookTour', () => {
         fillInputs(validData, inputs);
       });
 
-      expect(window.localStorage.getItem('tour_requests')).toBe('[]');
+      expect(window.localStorage.getItem('tour_requests')).toBeNull();
 
       await waitFor(() => {
         userEvent.click(submitButton);

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { GRAY, ORANGE } from 'styles/constants';
 
 export const StyledInput = styled.input`
-  margin: 5px 0;
   padding: 7px;
   width: 100%;
   font-size: 0.9rem;

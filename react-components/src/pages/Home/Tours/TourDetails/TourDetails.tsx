@@ -1,5 +1,6 @@
-import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
+import { Breadcrumbs } from 'components/Breadcrumbs/Breadcrumbs';
 import { IconList } from 'components/IconList/IconList';
+import { Navigate } from 'react-router-dom';
 import { TourDetailsType } from 'services/ToursDataType';
 import {
   Address,
@@ -25,6 +26,12 @@ type TourDescriptionProps = { data: TourDetailsType | null };
 export const TourDetails = ({ data }: TourDescriptionProps) => {
   return data ? (
     <StyledTourDetails data-testid="tour_details">
+      <Breadcrumbs
+        location={[
+          { name: 'Tours', link: '/' },
+          { name: data?.name, link: '#' },
+        ]}
+      />
       <Section>
         <TourHeading>
           <TourName>{data.name}</TourName>
@@ -85,6 +92,6 @@ export const TourDetails = ({ data }: TourDescriptionProps) => {
       </OptionalExtras>
     </StyledTourDetails>
   ) : (
-    <ErrorSection message="No info about this tour" />
+    <Navigate to="/" />
   );
 };

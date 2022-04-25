@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { StyledForm, FormBody, FormHeader, FormHeading, FormWrapper, Label } from './StyledForm';
-import { Button, Input, customInputs, CustomInputs } from './Inputs';
-import { inputFields, TourFormData } from './FormFields';
+import {
+  StyledForm,
+  FormBody,
+  FormHeader,
+  FormHeading,
+  FormWrapper,
+  SubmitButton,
+} from './StyledForm';
+import { Input, customInputs, CustomInputs } from 'components/Inputs';
+import { ValidationAlert } from 'components/Inputs/Input/StyledInput';
+import { Label } from 'components/Inputs/StyledLabel';
+
 import { InfoMessage } from './InfoMessage/InfoMessage';
-import { ValidationAlert } from './Inputs/Input/StyledInput';
 import { useAppContext } from 'AppContextProvider';
+import { inputFields, TourFormData } from './FormFields';
 
 export const fields: Array<keyof TourFormData> = [
   'firstName',
@@ -64,9 +73,9 @@ export const Form = () => {
             );
           })}
 
-          <Button type="submit" disabled={!isValid}>
+          <SubmitButton type="submit" disabled={!isValid}>
             Help me plan my trip
-          </Button>
+          </SubmitButton>
         </FormBody>
       </StyledForm>
     </FormWrapper>

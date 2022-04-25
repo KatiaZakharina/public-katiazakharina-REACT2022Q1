@@ -37,11 +37,13 @@ describe('Tours', () => {
       customRender(<Tours />);
 
       const search = await screen.findByRole('textbox');
+      const searchButton = await screen.findByRole('button');
+
       expect(search).toBeInTheDocument();
-      expect(search).toBeDisabled();
+      expect(searchButton).toBeDisabled();
 
       await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
-      expect(search).not.toBeDisabled();
+      expect(searchButton).not.toBeDisabled();
     });
 
     it('renders preloader', async () => {

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterPanel renders correctly with default values 1`] = `
+<DocumentFragment>
+  <form
+    class="sc-jrQzAO abGKM"
+    name="filter-panel"
+  >
+    <label
+      class="sc-pVTFL jiYIUu"
+      for="pageSize"
+    >
+      Cards per page
+      <input
+        class="sc-eCImPb vLPjS"
+        id="pageSize"
+        max="25"
+        min="1"
+        name="pageSize"
+        type="number"
+        value="24"
+      />
+    </label>
+    <label
+      class="sc-pVTFL jiYIUu"
+      for="rating"
+    >
+      Hotel rating
+      <input
+        class="sc-eCImPb vLPjS"
+        id="rating"
+        max="5"
+        min="1"
+        name="rating"
+        type="number"
+        value=""
+      />
+    </label>
+    <label
+      class="sc-pVTFL jiYIUu"
+      for="sortOrder"
+    >
+      Sort by
+      <select
+        class="sc-eCImPb vLPjS"
+        id="sortOrder"
+        name="sortOrder"
+        type="select"
+      >
+        <option
+          hidden=""
+          value=""
+        >
+          PRICE
+        </option>
+        <option
+          value="PRICE"
+        >
+          best seller
+        </option>
+        <option
+          value="BEST_SELLER"
+        >
+          distance from landmark
+        </option>
+        <option
+          value="DISTANCE_FROM_LANDMARK"
+        >
+          guest rating
+        </option>
+        <option
+          value="GUEST_RATING"
+        >
+          price highest first
+        </option>
+        <option
+          value="PRICE_HIGHEST_FIRST"
+        >
+          price
+        </option>
+      </select>
+    </label>
+  </form>
+</DocumentFragment>
+`;

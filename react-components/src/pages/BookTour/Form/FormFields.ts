@@ -1,8 +1,5 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react';
-import { RegisterOptions } from 'react-hook-form';
-
+import { Fields } from 'components/Inputs/InputTypes';
 import { formatYmd } from 'services/dateFormatter';
-import { customInputs } from './Inputs';
 
 export type TourFormData = {
   firstName: string;
@@ -15,16 +12,7 @@ export type TourFormData = {
   getNotification: boolean;
 };
 
-export interface FormProps<T> extends InputHTMLAttributes<T> {
-  register?: RegisterOptions;
-  labelText?: string;
-  type: HTMLInputTypeAttribute | keyof typeof customInputs;
-  options?: string[];
-}
-
-export type FormFields<T> = { [key in keyof TourFormData]: FormProps<T> };
-
-export const inputFields: FormFields<HTMLInputElement | HTMLSelectElement> = {
+export const inputFields: Fields<HTMLInputElement | HTMLSelectElement, TourFormData> = {
   firstName: {
     id: 'firstName',
     type: 'text',

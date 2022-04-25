@@ -68,6 +68,10 @@ export const hotelsAPIData = {
     body: {
       searchResults: {
         results: hotels,
+        totalCount: 2,
+        pagination: {
+          currentPage: 1,
+        },
       },
     },
   },
