@@ -6,24 +6,20 @@ import { dateAfter, formatYmd } from './dateFormatter';
 import defaultImg from 'assets/cards/default_image.png';
 
 export class TourService {
-  private apiKey = '429bbe3fa7mshf19836439e9ee89p1a1a67jsn4d4c6f394263';
-
   private setErrorCode: (code: number) => void;
   private axios: AxiosInstance;
 
   private baseOffset = 24;
   private defaultParameters = { locale: 'en_US', currency: 'USD' };
 
-  static basePath = 'https://hotels4.p.rapidapi.com';
-
   constructor(setErrorCode: (code: number) => void) {
     this.setErrorCode = setErrorCode;
 
     this.axios = axios.create({
-      baseURL: TourService.basePath,
+      baseURL: `https://${process.env.REACT_APP_RAPID_API_HOST}`,
       headers: {
-        'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
-        'X-RapidAPI-Key': this.apiKey,
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST as string,
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY as string,
       },
     });
   }
@@ -62,7 +58,9 @@ export class TourService {
   }
 
   async getHotels(id: string | null, page = 1): Promise<Array<HotelI>> {
-    if (!id) return [];
+    if (!id) {
+      return [];
+    }
 
     const params = {
       destinationId: id,

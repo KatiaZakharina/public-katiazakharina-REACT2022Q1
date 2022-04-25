@@ -27,7 +27,7 @@ export class HandlersFactory {
     hotelImageResponse: { path: '/properties/get-hotel-photos', correctData: hotelImgAPIData },
   };
 
-  basePath = TourService.basePath;
+  basePath = `https://${process.env.REACT_APP_RAPID_API_HOST}`;
 
   constructor(setup: HandlersFactorySetup) {
     this.handlers = this.setHandlers(setup);
