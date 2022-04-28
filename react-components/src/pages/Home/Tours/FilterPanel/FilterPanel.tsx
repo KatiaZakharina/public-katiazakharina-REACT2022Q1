@@ -2,17 +2,20 @@ import { ChangeEvent } from 'react';
 
 import { customInputs, CustomInputs, Input } from 'components/Inputs';
 import { Label } from 'components/Inputs/StyledLabel';
-import { FilterData, inputFields } from './FilterFields';
+import { inputFields } from './FilterFields';
 import { StyledFilterPanel } from './StyledFilterPanel';
-import { useAppContext } from 'AppContextProvider';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { FilterData } from 'features/tours/types';
+import { changeFilters } from 'features/tours/actions';
 
 export const FilterPanel = () => {
-  const { filters, setFilters } = useAppContext();
+  const filters = useAppSelector((state) => state.toursReducer.filters);
+  const dispatch = useAppDispatch();
 
   const fields: Array<keyof FilterData> = ['pageSize', 'rating', 'sortOrder'];
 
   const onChange = (e: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLSelectElement>) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    dispatch(changeFilters({ ...filters, [e.target.name]: e.target.value }));
   };
 
   return (

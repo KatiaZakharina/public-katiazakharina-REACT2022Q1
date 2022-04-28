@@ -4,7 +4,7 @@ import { HotelI, TourData, TourDescriptionType, TourDetailsType } from './ToursD
 import { dateAfter, formatYmd } from './dateFormatter';
 
 import defaultImg from 'assets/cards/default_image.png';
-import { FilterData } from 'pages/Home/Tours/FilterPanel/FilterFields';
+import { FilterData } from 'features/tours/types';
 
 export class TourService {
   private setErrorCode: (code: number) => void;

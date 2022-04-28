@@ -7,7 +7,7 @@ import { fillInputs, getInputs } from './__mocks__/formMocks';
 import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { requests } from './RequestList/RequestList.test';
 import { validData } from './__mocks__/formData';
-import { renderWithContext } from 'test/__mocks__/renders';
+import { customRender } from 'test/__mocks__/customRender';
 
 describe('BookTour', () => {
   beforeAll(() => {
@@ -21,7 +21,7 @@ describe('BookTour', () => {
   });
 
   it('renders Form and RequestList', () => {
-    renderWithContext(<BookTour />);
+    customRender(<BookTour />);
 
     expect(screen.getByRole('form')).toBeInTheDocument();
     expect(screen.getByText('Requests List')).toBeInTheDocument();
@@ -30,14 +30,14 @@ describe('BookTour', () => {
   it('renders RequestList from localStorage', () => {
     window.localStorage.setItem('tour_requests', JSON.stringify(requests));
 
-    renderWithContext(<BookTour />);
+    customRender(<BookTour />);
 
     expect(screen.getAllByTestId('request_card')).toHaveLength(requests.length);
   });
 
   describe('Form submit', () => {
     it('renders new RequestCard', async () => {
-      const { container } = renderWithContext(<BookTour />);
+      const { container } = customRender(<BookTour />);
       const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
       const inputs = getInputs(container);
@@ -54,8 +54,8 @@ describe('BookTour', () => {
       expect(screen.getAllByTestId('request_card')).toHaveLength(1);
     });
 
-    it('saves data in localStorage after unmounting', async () => {
-      const { container, unmount } = renderWithContext(<BookTour />);
+    it.only('saves data in localStorage after unmounting', async () => {
+      const { container, unmount } = customRender(<BookTour />);
       const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
       const inputs = getInputs(container);
@@ -63,7 +63,7 @@ describe('BookTour', () => {
         fillInputs(validData, inputs);
       });
 
-      expect(window.localStorage.getItem('tour_requests')).toBeNull();
+      expect(window.localStorage.getItem('app')).toBeNull();
 
       await waitFor(() => {
         userEvent.click(submitButton);
@@ -72,9 +72,11 @@ describe('BookTour', () => {
       unmount();
 
       const fileListMock = { 0: {}, length: 1 };
-      expect(window.localStorage.getItem('tour_requests')).toBe(
-        JSON.stringify([{ ...validData, pcr: fileListMock }])
-      );
+
+      const localData = JSON.parse(window.localStorage.getItem('app') || '');
+      expect(localData?.requestsReducer?.requests).toStrictEqual([
+        { ...validData, pcr: fileListMock },
+      ]);
     });
   });
 });

@@ -1,5 +1,5 @@
+import { TourFormData } from 'features/requests/types';
 import { Description } from '../Description/Description';
-import { TourFormData } from '../Form/FormFields';
 import { RequestCard } from './RequestCard/RequestCard';
 import { RequestsTitle, StyledRequestList } from './StyledRequestList';
 

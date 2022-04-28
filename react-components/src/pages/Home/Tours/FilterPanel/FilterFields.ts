@@ -1,24 +1,5 @@
 import { Fields } from 'components/Inputs/InputTypes';
-
-export const SortOptions = {
-  'best seller': 'BEST_SELLER',
-  'distance from landmark': 'DISTANCE_FROM_LANDMARK',
-  'guest rating': 'GUEST_RATING',
-  'price highest first': 'PRICE_HIGHEST_FIRST',
-  price: 'PRICE',
-};
-
-export type FilterData = {
-  pageSize: string;
-  rating: string;
-  sortOrder: typeof SortOptions[keyof typeof SortOptions];
-};
-
-export const defaultFilters: FilterData = {
-  pageSize: '24',
-  rating: '',
-  sortOrder: SortOptions.price,
-};
+import { FilterData, SortOptions } from 'features/tours/types';
 
 export const inputFields: Fields<HTMLInputElement | HTMLSelectElement, FilterData> = {
   pageSize: {

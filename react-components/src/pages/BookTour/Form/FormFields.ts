@@ -1,16 +1,6 @@
 import { Fields } from 'components/Inputs/InputTypes';
+import { TourFormData } from 'features/requests/types';
 import { formatYmd } from 'services/dateFormatter';
-
-export type TourFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  date: string;
-  destination: string;
-  withChildren: boolean;
-  pcr: File[];
-  getNotification: boolean;
-};
 
 export const inputFields: Fields<HTMLInputElement | HTMLSelectElement, TourFormData> = {
   firstName: {

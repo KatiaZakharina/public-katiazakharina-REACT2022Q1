@@ -14,8 +14,10 @@ import { ValidationAlert } from 'components/Inputs/Input/StyledInput';
 import { Label } from 'components/Inputs/StyledLabel';
 
 import { InfoMessage } from './InfoMessage/InfoMessage';
-import { useAppContext } from 'AppContextProvider';
-import { inputFields, TourFormData } from './FormFields';
+import { inputFields } from './FormFields';
+import { TourFormData } from 'features/requests/types';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { addRequest } from 'features/requests/actions';
 
 export const fields: Array<keyof TourFormData> = [
   'firstName',
@@ -29,8 +31,9 @@ export const fields: Array<keyof TourFormData> = [
 ];
 
 export const Form = () => {
-  const { requests, setRequests } = useAppContext();
   const [alertIsVisible, setAlertIsVisible] = useState(false);
+  const requests = useAppSelector((state) => state.requestsReducer.requests);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -45,7 +48,7 @@ export const Form = () => {
 
   const onSubmit: SubmitHandler<TourFormData> = (data) => {
     reset();
-    setRequests([...requests, data]);
+    dispatch(addRequest([...requests, data]));
     setAlertIsVisible(true);
   };
 

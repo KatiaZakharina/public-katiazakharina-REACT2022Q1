@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { RequestList } from './RequestList';
-import { TourFormData } from '../Form/FormFields';
+import { TourFormData } from 'features/requests/types';
 import { fakeImage } from '../__mocks__/formMocks';
 
 const emptyRequests: Array<TourFormData> = [];

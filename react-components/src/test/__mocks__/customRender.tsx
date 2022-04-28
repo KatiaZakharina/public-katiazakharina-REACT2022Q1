@@ -1,13 +1,14 @@
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import { AppContextProvider } from 'AppContextProvider';
+import { store } from 'app/store';
 
 export const customRender = (ui: ReactNode, route?: string) => {
   return render(
     <MemoryRouter initialEntries={route ? [route] : undefined}>
-      <AppContextProvider>{ui}</AppContextProvider>
+      <Provider store={store}>{ui}</Provider>
     </MemoryRouter>
   );
 };

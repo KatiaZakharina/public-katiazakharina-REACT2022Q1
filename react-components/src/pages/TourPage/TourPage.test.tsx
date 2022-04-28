@@ -3,7 +3,7 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 
 import { HandlersFactory } from 'services/__mocks__/hotelAPI';
-import { renderWithRouter } from 'test/__mocks__/renders';
+import { customRender } from 'test/__mocks__/customRender';
 import App from 'App';
 
 describe('TourPage', () => {
@@ -20,7 +20,7 @@ describe('TourPage', () => {
 
     it('displays hotel details', async () => {
       const tourId = '12345';
-      const { asFragment } = renderWithRouter(<App />, `/tours/${tourId}`);
+      const { asFragment } = customRender(<App />, `/tours/${tourId}`);
       expect(screen.getByTestId('tour_details')).toBeInTheDocument();
 
       await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));
@@ -49,7 +49,7 @@ describe('TourPage', () => {
 
     it('displays error message', async () => {
       const tourId = '12345';
-      const { asFragment } = renderWithRouter(<App />, `/tours/${tourId}`);
+      const { asFragment } = customRender(<App />, `/tours/${tourId}`);
       expect(screen.getByTestId('tour_details')).toBeInTheDocument();
 
       await waitForElementToBeRemoved(() => screen.queryByTestId('preloader'));

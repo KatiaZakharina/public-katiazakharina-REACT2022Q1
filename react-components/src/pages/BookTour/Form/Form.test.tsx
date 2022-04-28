@@ -1,16 +1,16 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
-import { renderWithContext } from 'test/__mocks__/renders';
+import { customRender } from 'test/__mocks__/customRender';
 import { invalidData, validData } from '../__mocks__/formData';
 import { fillInputs, getInputs } from '../__mocks__/formMocks';
 import { Form } from './Form';
 
 describe('Form', () => {
   it('is rendered correctly', () => {
-    const { container } = render(<Form />);
+    const { container } = customRender(<Form />);
 
     expect(screen.getByRole('form')).toBeInTheDocument();
     Object.values(getInputs(container)).forEach((input) => expect(input).toBeInTheDocument());
@@ -20,7 +20,7 @@ describe('Form', () => {
 
 describe('Form validation', () => {
   test('if all input data is required', () => {
-    const { container } = render(<Form />);
+    const { container } = customRender(<Form />);
 
     const inputs = getInputs(container);
 
@@ -30,7 +30,7 @@ describe('Form validation', () => {
   });
 
   test('if submission is disabled if the data is incorrect', async () => {
-    const { container } = render(<Form />);
+    const { container } = customRender(<Form />);
 
     const inputs = getInputs(container);
 
@@ -44,7 +44,7 @@ describe('Form validation', () => {
 
 describe('when filling out the Form', () => {
   it('display data correctly', async () => {
-    const { container } = render(<Form />);
+    const { container } = customRender(<Form />);
 
     const inputs = getInputs(container);
 
@@ -61,7 +61,7 @@ describe('when filling out the Form', () => {
 
 describe('Form submit', () => {
   it('cleans inputs', async () => {
-    const { container } = renderWithContext(<Form />);
+    const { container } = customRender(<Form />);
     const submitButton = screen.getByRole('button', { name: 'Help me plan my trip' });
 
     const inputs = getInputs(container);
@@ -80,7 +80,7 @@ describe('Form submit', () => {
   it('shows and hides success message', async () => {
     jest.useFakeTimers();
 
-    const { container } = renderWithContext(<Form />);
+    const { container } = customRender(<Form />);
 
     const inputs = getInputs(container);
     await waitFor(() => {

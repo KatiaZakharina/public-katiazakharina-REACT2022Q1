@@ -1,20 +1,24 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { TourData } from 'services/ToursDataType';
 import { Search } from './Search/Search';
 import { SearchPanel, StyledTours } from './StyledTours';
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { CardList } from './CardList/CardList';
 import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
 import { TourService } from 'services/TourService';
-import { useAppContext } from 'AppContextProvider';
 import { FilterPanel } from './FilterPanel/FilterPanel';
-import { FilterData } from './FilterPanel/FilterFields';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { FilterData } from 'features/tours/types';
+import { changeTours, setTotalPages } from 'features/tours/actions';
 
 export const Tours = () => {
-  const { search, filters, currentPage, setTotalPages } = useAppContext();
+  const search = useAppSelector((state) => state.toursReducer.searchValue);
+  const filters = useAppSelector((state) => state.toursReducer.filters);
+  const currentPage = useAppSelector((state) => state.toursReducer.pagination.current);
+  const tours = useAppSelector((state) => state.toursReducer.tours);
 
-  const [data, setData] = useState<Array<TourData>>([]);
+  const dispatch = useAppDispatch();
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorCode, setErrorCode] = useState<number | null>(null);
 
@@ -30,9 +34,9 @@ export const Tours = () => {
         setIsLoaded(false);
         const { data, total } = await service.getBriefToursInfo(city, filters, page);
 
-        setData(data);
+        dispatch(changeTours(data));
 
-        setTotalPages(total);
+        dispatch(setTotalPages(total));
         setIsLoaded(true);
       } catch (error) {
         console.error(error);
@@ -59,7 +63,7 @@ export const Tours = () => {
             <FilterPanel />
           </SearchPanel>
 
-          {!isLoaded ? <SpinnerLoading /> : <CardList data={data} />}
+          {!isLoaded ? <SpinnerLoading /> : <CardList data={tours} />}
         </StyledTours>
       )}
     </div>

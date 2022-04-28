@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 
 import { fields } from '../Form/Form';
-import { TourFormData } from '../Form/FormFields';
+import { TourFormData } from 'features/requests/types';
 
 type InputsEls = { [key in keyof TourFormData]: HTMLInputElement };
 

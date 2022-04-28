@@ -8,7 +8,7 @@ import { fakeLocalStorage } from 'test/__mocks__/fakeLocalStorage ';
 import { hotels, locationSearchAPIData } from 'services/__mocks__/fakeData';
 import { HandlersFactory } from 'services/__mocks__/hotelAPI';
 import { mockAxiosGet } from 'services/__mocks__/axiosMock';
-import { customRender } from 'test/__mocks__/renders';
+import { customRender } from 'test/__mocks__/customRender';
 
 describe('Tours', () => {
   beforeAll(() => {

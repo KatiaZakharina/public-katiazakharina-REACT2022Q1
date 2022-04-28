@@ -1,25 +1,25 @@
 import { ChangeEvent } from 'react';
 
-import { useAppContext } from 'AppContextProvider';
 import { Button, Input } from 'components/Inputs';
 import { StyledPagination } from './StyledPagination';
-
-export const defaultPagination = { current: 1, total: 3 };
-
-export type PaginationData = { current: number; total: number };
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { setCurrentPage } from 'features/tours/actions';
 
 export const Pagination = () => {
-  const { currentPage, totalPages, setCurrentPage } = useAppContext();
+  const currentPage = useAppSelector((state) => state.toursReducer.pagination.current);
+  const totalPages = useAppSelector((state) => state.toursReducer.pagination.total);
+
+  const dispatch = useAppDispatch();
 
   const increment = () => {
-    setCurrentPage(currentPage + 1);
+    dispatch(setCurrentPage(currentPage + 1));
   };
   const decrement = () => {
-    setCurrentPage(currentPage - 1);
+    dispatch(setCurrentPage(currentPage - 1));
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCurrentPage(+e.target.value);
+    dispatch(setCurrentPage(+e.target.value));
   };
 
   const isFirst = () => currentPage === 1;
