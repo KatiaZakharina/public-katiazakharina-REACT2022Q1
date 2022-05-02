@@ -1,69 +1,49 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Search } from './Search/Search';
 import { SearchPanel, StyledTours } from './StyledTours';
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { CardList } from './CardList/CardList';
 import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
-import { TourService } from 'services/TourService';
 import { FilterPanel } from './FilterPanel/FilterPanel';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { FilterData } from 'features/tours/types';
-import { changeTours, setTotalPages } from 'features/tours/actions';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { disableNeedToLoad, fetchTours } from 'store/reducers/tours/tourSlice';
+import { RequestError } from 'services/TourService';
 
 export const Tours = () => {
-  const search = useAppSelector((state) => state.toursReducer.searchValue);
-  const filters = useAppSelector((state) => state.toursReducer.filters);
   const currentPage = useAppSelector((state) => state.toursReducer.pagination.current);
-  const tours = useAppSelector((state) => state.toursReducer.tours);
-
+  const { filters, tours, error, loading } = useAppSelector((state) => state.toursReducer);
   const dispatch = useAppDispatch();
-
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [errorCode, setErrorCode] = useState<number | null>(null);
-
-  const service = useMemo(() => new TourService(setErrorCode), []);
-  const defaultCity = 'paris';
-
-  const updateTours = useCallback(
-    async (city: string, filters: FilterData, page) => {
-      if (!city.length) {
-        city = defaultCity;
-      }
-      try {
-        setIsLoaded(false);
-        const { data, total } = await service.getBriefToursInfo(city, filters, page);
-
-        dispatch(changeTours(data));
-
-        dispatch(setTotalPages(total));
-        setIsLoaded(true);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [service]
-  );
 
   useEffect(() => {
     const update = async () => {
-      await updateTours(search, filters, currentPage);
+      dispatch(fetchTours());
     };
     update();
-  }, [search, filters, currentPage, updateTours]);
+  }, [filters, currentPage, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(disableNeedToLoad());
+    };
+  }, [dispatch]);
 
   return (
     <div id="tours">
-      {errorCode ? (
-        <ErrorSection code={errorCode} />
+      {error ? (
+        <ErrorSection
+          message={error?.message}
+          code={error instanceof RequestError ? error.code : undefined}
+        />
       ) : (
         <StyledTours>
           <SearchPanel>
-            <Search disabled={!isLoaded} />
+            <Search disabled={loading} />
             <FilterPanel />
           </SearchPanel>
 
-          {!isLoaded ? <SpinnerLoading /> : <CardList data={tours} />}
+          {loading ? <SpinnerLoading /> : <CardList data={tours} />}
         </StyledTours>
       )}
     </div>

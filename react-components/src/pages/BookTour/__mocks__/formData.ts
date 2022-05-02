@@ -1,5 +1,5 @@
 import { formatYmd } from 'services/dateFormatter';
-import { TourFormData } from 'features/requests/types';
+import { TourFormData } from 'store/reducers/requests/types';
 import { fakeImage } from './formMocks';
 
 export const validData: TourFormData = {

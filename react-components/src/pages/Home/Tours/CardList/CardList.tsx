@@ -1,6 +1,6 @@
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { Pagination } from 'pages/Home/Tours/Pagination/Pagination';
-import { TourData } from 'services/ToursDataType';
+import { TourData } from 'services/types';
 import { TourCard } from '../Card/TourCard';
 import { CardWrapper, StyledCardList } from './StyledCardList';
 

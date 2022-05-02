@@ -2,8 +2,9 @@ import { ChangeEvent } from 'react';
 
 import { Button, Input } from 'components/Inputs';
 import { StyledPagination } from './StyledPagination';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { setCurrentPage } from 'features/tours/actions';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setCurrentPage } from 'store/reducers/tours/tourSlice';
 
 export const Pagination = () => {
   const currentPage = useAppSelector((state) => state.toursReducer.pagination.current);

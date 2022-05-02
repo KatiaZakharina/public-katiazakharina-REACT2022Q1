@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { TourData } from 'services/ToursDataType';
+import { TourData } from 'services/types';
 import { CardInfo } from './CardInfo/CardInfo';
 import { CardLabels } from './CardLabels/CardLabels';
 import { StyledTourCard, CardTitle, CardImg, CardDescription } from './StyledTourCard';

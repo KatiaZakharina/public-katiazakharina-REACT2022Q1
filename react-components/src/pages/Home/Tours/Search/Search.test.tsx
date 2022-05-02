@@ -11,7 +11,7 @@ describe('Search with empty value', () => {
     customRender(<Search disabled={false} />);
 
     expect(screen.getByText(/Search/)).toBeInTheDocument();
-    expect(screen.getByDisplayValue('')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('France')).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Search/)).toBeInTheDocument();
     expect(screen.getByRole('textbox')).not.toBeDisabled;
   });
@@ -49,7 +49,7 @@ describe('Search query', () => {
 
     expect(screen.getByText(/Search/)).toBeInTheDocument();
     expect(screen.getByDisplayValue(searchQuery)).toBeInTheDocument();
-    // expect(window.localStorage.getItem('app')).toBe(searchQuery);
+    expect(window.localStorage.getItem('app')).toBe(searchQuery);
   });
 });
 

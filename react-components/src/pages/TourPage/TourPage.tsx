@@ -1,45 +1,46 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ErrorSection } from 'components/helpers/ErrorSection/ErrorSection';
 import { SpinnerLoading } from 'components/helpers/Spinner/StyledSpinner';
-import { TourDetails } from 'pages/Home/Tours/TourDetails/TourDetails';
-import { TourDetailsType } from 'services/ToursDataType';
-import { TourService } from 'services/TourService';
+import { TourDetails } from 'pages/TourPage/TourDetails/TourDetails';
 import { StyledTourPage } from './StyledTourPage';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import {
+  disableNeedToLoad,
+  fetchDetails,
+  setHotelId,
+} from 'store/reducers/tourDetails/detailsSlice';
+import { RequestError } from 'services/TourService';
 
 type TourPageParam = { tourId: string };
 
 export const TourPage = () => {
   const { tourId } = useParams<TourPageParam>();
-  const [details, setDetails] = useState<TourDetailsType | null>(null);
-  const [detailsLoaded, setDetailsLoaded] = useState(false);
-  const [errorCode, setErrorCode] = useState<number | null>(null);
 
-  const service = useMemo(() => new TourService(setErrorCode), []);
+  const { details, error, loading } = useAppSelector((state) => state.detailsReducer);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const showTourDetails = async (id?: string) => {
-      try {
-        setDetailsLoaded(false);
+    dispatch(setHotelId(tourId));
+    dispatch(fetchDetails());
+  }, [tourId, dispatch]);
 
-        const data = await service.getTourDetails(id);
-
-        setDetails(data);
-        setDetailsLoaded(true);
-      } catch (error) {
-        console.error(error);
-      }
+  useEffect(() => {
+    return () => {
+      dispatch(disableNeedToLoad());
     };
-
-    showTourDetails(tourId);
-  }, [tourId, service]);
+  }, [dispatch]);
 
   return (
     <StyledTourPage data-testid="tour_details">
-      {errorCode ? (
-        <ErrorSection code={errorCode} />
-      ) : detailsLoaded ? (
+      {error ? (
+        <ErrorSection
+          message={error.message}
+          code={error instanceof RequestError ? error.code : undefined}
+        />
+      ) : !loading ? (
         <TourDetails data={details} />
       ) : (
         <SpinnerLoading />

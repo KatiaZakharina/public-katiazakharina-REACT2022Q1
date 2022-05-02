@@ -4,9 +4,10 @@ import { customInputs, CustomInputs, Input } from 'components/Inputs';
 import { Label } from 'components/Inputs/StyledLabel';
 import { inputFields } from './FilterFields';
 import { StyledFilterPanel } from './StyledFilterPanel';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { FilterData } from 'features/tours/types';
-import { changeFilters } from 'features/tours/actions';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { FilterData } from 'store/reducers/tours/types';
+import { changeFilters } from 'store/reducers/tours/tourSlice';
 
 export const FilterPanel = () => {
   const filters = useAppSelector((state) => state.toursReducer.filters);

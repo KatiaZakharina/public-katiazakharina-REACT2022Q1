@@ -385,7 +385,7 @@ exports[`TourPage with error details API response displays error message 1`] = `
       <img
         alt="error illustration"
         class="sc-fKVqWL kTIdEB"
-        src="no_connection.svg"
+        src="error.svg"
       />
       <div
         class="sc-bBHxTw hgVDmX"
@@ -393,17 +393,12 @@ exports[`TourPage with error details API response displays error message 1`] = `
         <h2
           class="sc-iwjdpV irfMDu"
         >
-          Internal Server Error
+          Oops!
         </h2>
         <p
           class="sc-cxpSdN jljmov"
         >
-          Sorry, there were some technical issues while processing yous request
-        </p>
-        <p
-          class="sc-llYSUQ itJvmD"
-        >
-          ERROR CODE: 500
+          Failed to load hotels description
         </p>
       </div>
     </div>

@@ -1,24 +1,31 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { HotelI, TourData, TourDescriptionType, TourDetailsType } from './ToursDataType';
+import { HotelI, RequestErrorType, TourData, TourDescriptionType, TourDetailsType } from './types';
 import { dateAfter, formatYmd } from './dateFormatter';
 
 import defaultImg from 'assets/cards/default_image.png';
-import { FilterData } from 'features/tours/types';
+import { FilterData } from 'store/reducers/tours/types';
+
+export class RequestError extends Error implements RequestErrorType {
+  public code: number;
+
+  constructor(message: string, code: number) {
+    super(message);
+    this.name = 'RequestError';
+    this.code = code;
+  }
+}
 
 export class TourService {
-  private setErrorCode: (code: number) => void;
   private axios: AxiosInstance;
 
   private defaultParameters = { locale: 'en_US', currency: 'USD' };
 
-  constructor(setErrorCode: (code: number) => void) {
-    this.setErrorCode = setErrorCode;
-
+  constructor() {
     this.axios = axios.create({
       baseURL: `https://${process.env.REACT_APP_RAPID_API_HOST}`,
       headers: {
-        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST as string,
+        'X-RapidAPI-Host': (process.env.REACT_APP_RAPID_API_HOST + 'dlksjfl') as string,
         'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY as string,
       },
     });
@@ -33,10 +40,9 @@ export class TourService {
       return response;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        this.setErrorCode(error.response.status);
-        throw Error(`Failed to load ${path}: response status: ${error.response.status}`);
+        throw new RequestError(`${error.name}: Failed to load`, error.response.status);
       } else {
-        throw Error(`An unexpected error occurred loading ${path}`);
+        throw new Error(`An unexpected error occurred loading ${path}`);
       }
     }
   }
@@ -49,10 +55,13 @@ export class TourService {
 
     try {
       const response = await this.getResponse('locations/v2/search', params);
+
       const data = response.data;
       return data?.suggestions?.[0]?.entities?.[0]?.destinationId || null;
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      if (error instanceof RequestError) {
+        throw error;
+      }
       throw Error('Failed to load location id');
     }
   }
@@ -177,3 +186,5 @@ export class TourService {
     }
   }
 }
+
+export default new TourService();

@@ -2,8 +2,9 @@ import { ChangeEvent, FormEvent } from 'react';
 
 import { SearchButton, StyledSearch } from './StyledSearch';
 import { Input } from 'components/Inputs';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { changeSearch } from 'features/tours/actions';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { changeSearch, fetchTours } from 'store/reducers/tours/tourSlice';
 
 type SearchProps = { disabled: boolean };
 
@@ -13,14 +14,12 @@ export const Search = ({ disabled }: SearchProps) => {
 
   const onUpdateSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const searchInput = (e.target as HTMLFormElement).elements?.[0] as HTMLInputElement;
-    dispatch(changeSearch(searchInput.value));
+    dispatch(fetchTours());
   };
 
   const onUpdateSearchText = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeSearch(e.target.value));
   };
-  // FIXME: run tours update only by onSubmit
 
   return (
     <StyledSearch onSubmit={onUpdateSearch}>

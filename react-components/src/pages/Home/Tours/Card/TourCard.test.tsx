@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 
 import { cardInfoData } from './CardInfo/CardInfo';
 import { TourCard } from './TourCard';
-import { TourData } from 'services/ToursDataType';
+import { TourData } from 'services/types';
 import { customRender } from 'test/__mocks__/customRender';
 
 describe('TourCard', () => {

@@ -1,4 +1,4 @@
-import { TourData } from 'services/ToursDataType';
+import { TourData } from 'services/types';
 
 import { IconList } from 'components/IconList/IconList';
 

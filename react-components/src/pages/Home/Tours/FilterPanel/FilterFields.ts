@@ -1,5 +1,5 @@
 import { Fields } from 'components/Inputs/InputTypes';
-import { FilterData, SortOptions } from 'features/tours/types';
+import { FilterData, SortOptions } from 'store/reducers/tours/types';
 
 export const inputFields: Fields<HTMLInputElement | HTMLSelectElement, FilterData> = {
   pageSize: {

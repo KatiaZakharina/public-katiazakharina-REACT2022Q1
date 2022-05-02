@@ -3,7 +3,7 @@ import { RequestFullName, StyledRequestCard } from './StyledRequestCard';
 import { LabelsWrapper } from '../StyledRequestList';
 import { ButtonBadge } from 'components/Badges/ButtonBadge';
 import { LabelBadge } from 'components/Badges/LabelBadge';
-import { TourFormData } from 'features/requests/types';
+import { TourFormData } from 'store/reducers/requests/types';
 
 type RequestCardProps = { data: TourFormData };
 

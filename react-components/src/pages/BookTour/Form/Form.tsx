@@ -12,12 +12,12 @@ import {
 import { Input, customInputs, CustomInputs } from 'components/Inputs';
 import { ValidationAlert } from 'components/Inputs/Input/StyledInput';
 import { Label } from 'components/Inputs/StyledLabel';
-
 import { InfoMessage } from './InfoMessage/InfoMessage';
 import { inputFields } from './FormFields';
-import { TourFormData } from 'features/requests/types';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { addRequest } from 'features/requests/actions';
+
+import { TourFormData } from 'store/reducers/requests/types';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { addRequest } from 'store/reducers/requests/actions';
 
 export const fields: Array<keyof TourFormData> = [
   'firstName',

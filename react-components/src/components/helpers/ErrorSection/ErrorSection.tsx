@@ -10,8 +10,8 @@ import {
 import error from 'assets/error_svg/error.svg';
 import emptySearch from 'assets/error_svg/empty_search.svg';
 import noConnection from 'assets/error_svg/no_connection.svg';
+import { CustomErrorCode } from 'services/types';
 
-type CustomErrorCode = 'empty_search';
 type ErrorSectionProps = { code?: number | CustomErrorCode; title?: string; message?: string };
 
 export function ErrorSection({ code, title, message }: ErrorSectionProps) {

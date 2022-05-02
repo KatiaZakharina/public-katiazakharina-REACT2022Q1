@@ -1,4 +1,4 @@
-import { TourData } from 'services/ToursDataType';
+import { RequestErrorType, TourData } from 'services/types';
 
 export const SortOptions = {
   'best seller': 'BEST_SELLER',
@@ -14,11 +14,28 @@ export type FilterData = {
   sortOrder: typeof SortOptions[keyof typeof SortOptions];
 };
 
-type Pagination = { current: number; total: number };
+type Pagination = {
+  current: number;
+  total: number;
+};
 
 export type TourState = {
   searchValue: string;
   filters: FilterData;
   pagination: Pagination;
   tours: TourData[];
+  needToLoad: boolean;
+  error: RequestErrorType | Error | null;
+  loading: boolean;
+};
+
+export type FetchToursProps = {
+  searchValue: string;
+  filters: FilterData;
+  currentPage: number;
+};
+
+export type FetchToursReturn = {
+  data: TourData[];
+  total: number;
 };

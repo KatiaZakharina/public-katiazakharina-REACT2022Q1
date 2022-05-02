@@ -1,4 +1,4 @@
-import { TourFormData } from 'features/requests/types';
+import { TourFormData } from 'store/reducers/requests/types';
 import { Description } from '../Description/Description';
 import { RequestCard } from './RequestCard/RequestCard';
 import { RequestsTitle, StyledRequestList } from './StyledRequestList';

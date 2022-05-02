@@ -1,7 +1,8 @@
+import { Navigate } from 'react-router-dom';
+
 import { Breadcrumbs } from 'components/Breadcrumbs/Breadcrumbs';
 import { IconList } from 'components/IconList/IconList';
-import { Navigate } from 'react-router-dom';
-import { TourDetailsType } from 'services/ToursDataType';
+import { TourDetailsType } from 'services/types';
 import {
   Address,
   Amenities,

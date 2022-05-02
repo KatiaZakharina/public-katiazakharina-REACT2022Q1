@@ -1,3 +1,9 @@
+export type CustomErrorCode = 'empty_search';
+
+export interface RequestErrorType extends Error {
+  code?: number | CustomErrorCode;
+}
+
 export type TourData = {
   id: string;
   accommodation: string;

@@ -1,5 +1,5 @@
 import { Fields } from 'components/Inputs/InputTypes';
-import { TourFormData } from 'features/requests/types';
+import { TourFormData } from 'store/reducers/requests/types';
 import { formatYmd } from 'services/dateFormatter';
 
 export const inputFields: Fields<HTMLInputElement | HTMLSelectElement, TourFormData> = {
