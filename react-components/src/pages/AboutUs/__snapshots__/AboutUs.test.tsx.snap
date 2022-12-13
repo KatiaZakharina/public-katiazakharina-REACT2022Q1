@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutUs renders correctly 1`] = `
+<DocumentFragment>
+  <main
+    class="sc-jRQBWg dFLTbQ"
+    data-testid="about_page"
+  >
+    <div
+      class="sc-dkPtRN lnasxi"
+      data-testid="hero_section"
+    >
+      <section
+        class="sc-bdvvtL kcgmgL"
+      >
+        <h2
+          class="sc-hKwDye MrYYA"
+        >
+          The relentless pursuit of excellence
+        </h2>
+      </section>
+    </div>
+    <section
+      class="sc-bdvvtL sc-gsDKAQ kcgmgL kkVWFs"
+    >
+      <div
+        class="sc-eCImPb bzSFHD"
+      >
+        <div>
+          <h2>
+            A transformative adventure
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam.
+          </p>
+          <p>
+            Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
+          </p>
+        </div>
+        <img
+          alt="mountain landscape"
+          src="about1.webp"
+        />
+      </div>
+      <div
+        class="sc-eCImPb igEKha"
+      >
+        <div>
+          <h2>
+            Somewhere, something, someone — new
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam.
+          </p>
+          <p>
+            Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
+          </p>
+        </div>
+        <img
+          alt="mountain landscape"
+          src="about2.webp"
+        />
+      </div>
+    </section>
+  </main>
+</DocumentFragment>
+`;
